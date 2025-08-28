@@ -1,389 +1,509 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sujith TS — Power BI Developer</title>
-  <meta name="description" content="Power BI Developer Portfolio of Sujith TS" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio website showcasing profile, education, skills, certifications, projects, Power BI dashboards, awards, and contact details." />
+  
+  <!-- ====== FAVICON (optional) ====== -->
+  <!-- <link rel="icon" href="assets/favicon.png" /> -->
+
+  <!-- ====== STYLES ====== -->
+  <style>
+    :root{
+      --bg:#000000;           /* Pure black background */
+      --card:#0f1115;         /* Dark card */
+      --muted:#a0a4ab;        /* Muted text */
+      --text:#e6e8eb;         /* Primary text */
+      --accent:#00e5ff;       /* Highlight color (change to taste) */
+      --accent-2:#7afcff33;   /* Subtle accent tint */
+      --ring: 0 0 0 3px var(--accent-2);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.5);
+      --trans: 220ms ease;
+    }
+
+    /* Reset-ish */
+    *,*::before,*::after{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:var(--bg); color:var(--text);
+    }
+    img{ max-width:100%; display:block }
+    a{ color:inherit; text-decoration:none }
+    h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
+    p{ margin:.4rem 0 0 }
+    section{ padding: 80px 20px }
+    .container{ max-width:1100px; margin:0 auto }
+
+    /* ====== Header / Nav ====== */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.6));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 20px; }
+    .brand{ display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:.3px }
+    .brand__dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 18px var(--accent) }
+
+    .menu{ display:flex; gap:18px; align-items:center }
+    .menu a{ padding:8px 12px; border-radius:999px; color:var(--muted); transition: color var(--trans), background var(--trans) }
+    .menu a:hover{ color:var(--text); background:rgba(122,252,255,0.1) }
+    .cta{
+      border:1px solid var(--accent); color:var(--accent);
+      padding:8px 14px; border-radius:999px; transition: background var(--trans), color var(--trans);
+    }
+    .cta:hover{ background:var(--accent); color:#001015 }
+
+    .nav__toggle{ display:none; background:none; border:0; color:var(--text); font-size:1.3rem }
+    @media (max-width:800px){
+      .menu{ display:none }
+      .menu.is-open{ display:flex; position:absolute; left:0; right:0; top:56px; background:#06080d; padding:14px 20px; flex-direction:column; gap:10px; border-bottom:1px solid rgba(255,255,255,.06) }
+      .nav__toggle{ display:block }
+    }
+
+    /* ====== Hero ====== */
+    .hero{ display:grid; grid-template-columns: 1.1fr .9fr; gap:34px; align-items:center }
+    .hero__tag{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:.9rem; color:var(--accent); background:rgba(122,252,255,0.08); border:1px solid rgba(122,252,255,0.25) }
+    .hero__title{ font-size: clamp(32px, 5vw, 54px) }
+    .hero__subtitle{ color:var(--muted); margin-top:.6rem }
+    .hero__actions{ display:flex; gap:12px; margin-top:22px }
+    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0a0d12; transition: transform var(--trans), border-color var(--trans); }
+    .btn:hover{ transform: translateY(-2px); border-color: var(--accent) }
+
+    .avatar{
+      width: 210px; aspect-ratio:1; border-radius: 22px; overflow:hidden; border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);
+    }
+    .hero__right{ display:flex; justify-content:center }
+
+    @media (max-width:900px){ .hero{ grid-template-columns:1fr; text-align:center } .hero__right{ order:-1 } .hero__actions{ justify-content:center } }
+
+    /* ====== Cards / shared ====== */
+    .grid{ display:grid; gap:18px }
+    .grid.cols-3{ grid-template-columns: repeat(3, 1fr) }
+    .grid.cols-2{ grid-template-columns: repeat(2, 1fr) }
+    @media (max-width:900px){ .grid.cols-3, .grid.cols-2{ grid-template-columns: 1fr } }
+
+    .card{
+      background: var(--card);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding:18px; box-shadow: var(--shadow);
+      transition: transform var(--trans), border-color var(--trans), box-shadow var(--trans);
+    }
+    .card:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,.18) }
+    .card h3{ margin-bottom:.3rem }
+
+    .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#0a0e14; border:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:.9rem }
+    .pill i{ width:8px; height:8px; border-radius:999px; background:var(--accent) }
+
+    /* ====== Education timeline ====== */
+    .timeline{ position:relative; padding-left:26px; }
+    .timeline::before{ content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent) }
+    .timeline__item{ margin: 18px 0; position:relative }
+    .timeline__item::before{ content:""; position:absolute; left:-21px; top:6px; width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 12px var(--accent) }
+    .timeline__meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:.95rem }
+
+    /* ====== Skills ====== */
+    .skills{ display:flex; flex-wrap:wrap; gap:10px }
+    .skill{ background:#0a0d12; border:1px solid rgba(255,255,255,.1); border-radius:999px; padding:8px 12px; font-size:.95rem; color:#d6dde3 }
+
+    /* ====== Projects ====== */
+    .filters{ display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 16px }
+    .filter{ padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:#0a0d12; color:var(--muted); cursor:pointer; transition:border-color var(--trans), color var(--trans) }
+    .filter.active, .filter:hover{ border-color:var(--accent); color:var(--text) }
+
+    .project{
+      display:grid; grid-template-columns: 160px 1fr; gap:14px; align-items:start
+    }
+    .project img{ width:100%; height:110px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.08) }
+    .tag{ font-size:.85rem; color:var(--muted) }
+    @media (max-width:700px){ .project{ grid-template-columns:1fr } }
+
+    /* ====== Dashboards (Power BI) ====== */
+    .dash__grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px }
+    .dash__item{ position:relative; cursor:zoom-in }
+    .dash__item img{ border-radius:12px; border:1px solid rgba(255,255,255,.08) }
+    .dash__caption{ position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.55); padding:6px 10px; border-radius:999px; font-size:.9rem }
+    @media (max-width:900px){ .dash__grid{ grid-template-columns: 1fr 1fr } }
+    @media (max-width:600px){ .dash__grid{ grid-template-columns: 1fr } }
+
+    /* ====== Awards ====== */
+    .awards{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px }
+    @media (max-width:800px){ .awards{ grid-template-columns: 1fr } }
+
+    /* ====== Contact ====== */
+    .contact{
+      display:grid; grid-template-columns: 1.1fr .9fr; gap:20px; align-items:start
+    }
+    .contact form{ display:grid; gap:10px }
+    .input, textarea{ background:#0a0d12; border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:12px; color:var(--text) }
+    .input:focus, textarea:focus{ outline:none; box-shadow: var(--ring); border-color: var(--accent) }
+    textarea{ min-height:120px; resize:vertical }
+    @media (max-width:900px){ .contact{ grid-template-columns:1fr } }
+
+    /* ====== Footer ====== */
+    footer{ padding:30px 20px; color:var(--muted); border-top:1px solid rgba(255,255,255,.06) }
+
+    /* ====== Utilities ====== */
+    .section__head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px }
+    .section__head h2{ font-size: clamp(22px, 3.5vw, 28px) }
+    .muted{ color:var(--muted) }
+    .accent{ color:var(--accent) }
+    .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); margin:18px 0 }
+    .sr-only{ position:absolute; left:-9999px }
+
+    /* ====== Lightbox ====== */
+    .lightbox{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.8); z-index:100 }
+    .lightbox.is-open{ display:grid }
+    .lightbox__inner{ max-width:min(1100px, 92vw); max-height: 86vh }
+    .lightbox__inner img{ width:100%; height:auto; border-radius:12px; border:1px solid rgba(255,255,255,.15) }
+    .lightbox__close{ position:absolute; top:18px; right:18px; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:#0f1115; cursor:pointer }
+
+    /* ====== Company logos row ====== */
+    .logos{ display:flex; gap:20px; flex-wrap:wrap; align-items:center; opacity:.9 }
+    .logos img{ height:30px; filter: grayscale(1) brightness(1.4); opacity:.8 }
+  </style>
 </head>
 <body>
-  <!-- Header / Nav -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home">Sujith TS</a>
-
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
-      </button>
-
-      <nav class="nav" id="site-nav" aria-label="Primary">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#certs">Certification</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+  <!-- ====== Header / Nav ====== -->
+  <header>
+    <nav class="nav container" aria-label="Primary">
+      <div class="brand">
+        <span class="brand__dot"></span>
+        <a href="#home" class="brand__name">Your Name</a>
+      </div>
+      <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
+      <div id="menu" class="menu" role="menubar">
+        <a href="#home" role="menuitem">Home</a>
+        <a href="#education" role="menuitem">Education</a>
+        <a href="#skills" role="menuitem">Skills</a>
+        <a href="#certs" role="menuitem">Certifications</a>
+        <a href="#projects" role="menuitem">Projects</a>
+        <a href="#dashboards" role="menuitem">Power BI</a>
+        <a href="#awards" role="menuitem">Awards</a>
+        <a href="#contact" role="menuitem" class="cta">Contact</a>
+      </div>
+    </nav>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="section hero">
-    <div class="container hero-inner">
-      <div class="hero-copy">
-        <p class="eyebrow">Hello!</p>
-        <h1 class="hero-title">I’m <span class="accent">Sujith TS</span></h1>
-        <p class="hero-sub">Power BI Developer from India, passionate about data visualization and analytics.</p>
-        <div class="hero-ctas">
-          <a class="btn" href="https://www.linkedin.com/in/sujith-siddarth-514830208/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-secondary" href="Sujith_TS_Power_BI_CV_2025.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-          <a class="btn btn-ghost" href="#about">Get to know more</a>
+  <!-- ====== Hero ====== -->
+  <main id="home" class="container" style="padding: 54px 20px 0">
+    <section class="hero">
+      <div class="hero__left">
+        <span class="hero__tag"><i class="brand__dot" style="width:6px;height:6px"></i> Available for opportunities</span>
+        <h1 class="hero__title">Hi, I'm <span class="accent">Your Name</span> — Data Analyst</h1>
+        <p class="hero__subtitle">I turn raw data into clear stories. I specialize in <b>Power BI</b>, <b>SQL</b>, and <b>Python</b> to build dashboards and analytics that drive decisions.</p>
+        <div class="hero__actions">
+          <a class="btn" href="#projects">View Projects</a>
+          <a class="btn" href="mailto:you@example.com">Email Me</a>
+          <!-- Optional Resume link -->
+          <!-- <a class="btn" href="assets/Your_Resume.pdf" download>Download CV</a> -->
+        </div>
+        <div class="divider"></div>
+        <div class="logos" aria-label="Companies I’ve worked with or for">
+          <!-- Replace with your company logos (PNG/SVG). Height auto-adjusts. -->
+          <!-- Example placeholders -->
+          <img src="https://dummyimage.com/120x40/0a0d12/ffffff&text=Company+A" alt="Company A"/>
+          <img src="https://dummyimage.com/120x40/0a0d12/ffffff&text=Company+B" alt="Company B"/>
+          <img src="https://dummyimage.com/120x40/0a0d12/ffffff&text=Company+C" alt="Company C"/>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
-        <div class="blob"><img src="IMG_20250707_150531_405.webp" width="400" height= "400" ></div>
+      <div class="hero__right">
+        <figure class="avatar" aria-label="Profile photo">
+          <!-- Replace src with your profile image -->
+          <img src="https://dummyimage.com/600x600/101318/ffffff&text=Your+Photo" alt="Your profile photo"/>
+        </figure>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- About -->
-  <section id="about" class="section">
+  <!-- ====== Education ====== -->
+  <section id="education">
     <div class="container">
-      <header class="section-header">
-        <p class="eyebrow">About Me</p>
-        <h2>About Me</h2>
-      </header>
-
-      <div class="grid two">
-        <div class="card">
-          <h3>Objective</h3>
-          <p>
-            Seeking a challenging position where I can use my skills in building and delivering creative solutions
-            that promote business development and improve user experiences. <!-- From resume -->
-          </p>
-          <h3>Career Summary</h3>
-          <ul>
-            <li>Skilled and certified (PL-300) Power BI & SQL professional with 3+ years in data modeling, analysis, and visualization.</li>
-            <li>Turn complex data into actionable insights; build scalable, efficient dashboards and reports.</li>
-            <li>Hands-on with Power BI, Oracle SQL, DAX Studio, Power Automate, and Report Builder—focused on data-driven decisions and operational efficiency.</li>
-          </ul>
-          <!-- Content sourced from your PDF. -->
-        </div>
-
-        <div class="stack">
-          <article class="card">
-            <h3>Experience</h3>
-            <ul class="timeline">
-              <li>
-                <div class="when">Dec 31, 2021 – Present</div>
-                <div class="what"><strong>System Engineer (Power BI Developer)</strong> — Tata Consultancy Services, Bengaluru</div>
-                <div class="muted">Client: Tata Play Limited (DTH & streaming)</div>
-                <ul style="margin-top:.4rem">
-                  <li>ETL with Power Query; KPI design as per stakeholder requirements.</li>
-                  <li>Implemented Static & Dynamic RLS; managed scheduled & incremental refresh.</li>
-                  <li>Built Paginated Reports (Report Builder).</li>
-                  <li>Automated email/Teams alerts with Power Automate for production thresholds.</li>
-                  <li>Ticket analysis dashboard (SLA tracking, volume, resolution trends, team performance).</li>
-                  <li>Recharge & payment failure analytics: patterns, counts, region-wise volume.</li>
-                  <li>Referral program analytics: acquisition, total/success/failure referrals.</li>
-                  <li>Activation/deactivation trend & reason analytics (daily/weekly/monthly).</li>
-                  <li>Offer pack revenue contribution analysis (popular plans identification).</li>
-                  <li>Work order management: creation/completion/pending trends, KPIs for open/overdue/completed.</li>
-                </ul>
-              </li>
-              <li>
-                <div class="when">In parallel</div>
-                <div class="what"><strong>EAI (Enterprise App Integration) – Analyst</strong> — Tata Play Limited</div>
-                <ul style="margin-top:.4rem">
-                  <li>Oracle/MySQL DML expertise; product master data maintenance (200+ CRs across UAT & prod).</li>
-                  <li>Advanced support for digital middleware, user issue resolution, and change configuration.</li>
-                </ul>
-              </li>
-              <li>
-                <div class="when">Oct 2020 – Nov 2021</div>
-                <div class="what"><strong>Trainee Test Engineer</strong> — Wistron Infocom Manufacturing India Pvt. Ltd., Bengaluru</div>
-                <ul style="margin-top:.4rem">
-                  <li>RF testing/validation (5G, Wi-Fi, Bluetooth), cross-functional lab evaluations.</li>
-                  <li>Failure analysis & documentation; team training & support.</li>
-                </ul>
-              </li>
-            </ul>
-          </article>
-
-          <article class="card">
-            <h3>Education</h3>
-            <ul class="timeline">
-              <li>
-                <div class="when">2016 – 2020</div>
-                <div class="what">
-                  <strong>Bachelor of Engineering (BE)</strong> — Government Engineering College, Kodagu (VTU, Belgaum)
-                </div>
-              </li>
-            </ul>
-
-            <div style="margin-top:.6rem">
-              <a class="btn btn-secondary" href="Sujith_TS_Power_BI_CV_2025.pdf" target="_blank" rel="noopener">Download CV</a>
-              <a class="btn btn-ghost" href="https://learn.microsoft.com/en-us/users/sujithts-9803/transcript/vymeouy4ln9000o" target="_blank" rel="noopener">MS Learn Transcript</a>
+      <div class="section__head">
+        <h2>Education</h2>
+        <span class="pill"><i></i> Formal & Self-Learning</span>
+      </div>
+      <div class="card">
+        <div class="timeline">
+          <!-- Duplicate timeline__item blocks for more entries -->
+          <div class="timeline__item">
+            <h3>B.Tech in Computer Science</h3>
+            <div class="timeline__meta">
+              <span>ABC University</span> •
+              <span>2019 – 2023</span>
             </div>
-          </article>
+            <p class="muted">CGPA: 8.6/10 • Relevant coursework: Data Mining, DBMS, Stats</p>
+          </div>
+          <div class="timeline__item">
+            <h3>Google Data Analytics Professional Certificate</h3>
+            <div class="timeline__meta">
+              <span>Coursera</span> • <span>2024</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Skills -->
-  <section id="skills" class="section alt">
+  <!-- ====== Skills ====== -->
+  <section id="skills">
     <div class="container">
-      <header class="section-header">
-        <p class="eyebrow">Explore My</p>
+      <div class="section__head">
         <h2>Skills</h2>
-      </header>
+        <span class="muted">Core tech I use</span>
+      </div>
+      <div class="card">
+        <div class="skills">
+          <!-- Add / remove skill pills -->
+          <span class="skill">Power BI</span>
+          <span class="skill">DAX</span>
+          <span class="skill">Power Query</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Python</span>
+          <span class="skill">Excel</span>
+          <span class="skill">ETL</span>
+          <span class="skill">Data Modeling</span>
+          <span class="skill">Git</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <div class="grid four skill-grid">
+  <!-- ====== Certifications ====== -->
+  <section id="certs">
+    <div class="container">
+      <div class="section__head">
+        <h2>Certifications</h2>
+        <span class="muted">Verified credentials</span>
+      </div>
+      <div class="grid cols-3">
+        <!-- Duplicate these certification cards as needed -->
         <article class="card">
-          <h3>Power BI & Analytics</h3>
-          <ul class="tags">
-            <li>Power BI Desktop</li><li>Power BI Service</li><li>Data Modeling</li><li>DAX</li>
-            <li>Power Query</li><li>Performance Analytics</li><li>Data Mart</li><li>Copilot</li>
-          </ul>
+          <h3>PL-300: Microsoft Power BI Data Analyst</h3>
+          <p class="muted">Microsoft • 2025</p>
+          <p><a href="#" class="accent">View Credential</a></p>
         </article>
-
         <article class="card">
-          <h3>SQL & Databases</h3>
-          <ul class="tags">
-            <li>Oracle SQL 11g</li><li>MySQL</li><li>Optimization</li><li>DML</li>
-          </ul>
+          <h3>SQL (Advanced)</h3>
+          <p class="muted">HackerRank • 2024</p>
+          <p><a href="#" class="accent">View Credential</a></p>
         </article>
-
         <article class="card">
-          <h3>Automation & Reporting</h3>
-          <ul class="tags">
-            <li>Power Automate</li><li>Paginated Reports</li><li>RLS</li><li>Scheduled/Incremental Refresh</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Visualization & UX</h3>
-          <ul class="tags">
-            <li>KPIs</li><li>Maps</li><li>Slicers</li><li>Table/Matrix</li><li>Advanced Charts</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Excel</h3>
-          <ul class="tags">
-            <li>Pivot Table</li><li>VLOOKUP</li><li>INDEX/MATCH</li><li>Conditional Formatting</li><li>Concatenate</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Tools (Basic)</h3>
-          <ul class="tags">
-            <li>DAX Studio</li><li>Postman</li><li>MTPutty</li><li>Kibana</li><li>VS Code</li><li>Eclipse</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Other</h3>
-          <ul class="tags">
-            <li>Incident Mgmt</li><li>Agile</li><li>Python (Basics)</li><li>Lucidchart</li>
-          </ul>
+          <h3>Data Visualization with Python</h3>
+          <p class="muted">IBM • 2023</p>
+          <p><a href="#" class="accent">View Credential</a></p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Projects -->
-  <section id="projects" class="section">
+  <!-- ====== Projects ====== -->
+  <section id="projects">
     <div class="container">
-      <header class="section-header">
-        <p class="eyebrow">Browse My Recent</p>
+      <div class="section__head">
         <h2>Projects</h2>
-      </header>
-
-      <div class="grid three cards-grid" data-collapsible>
-        <article class="card project-card">
-          <h3>Ticket Analysis Dashboard</h3>
-          <p class="muted">SLA tracking, ticket volume, resolution trends, and team performance to improve support efficiency. (Power BI, Oracle SQL, DAX)</p>
-        </article>
-
-        <article class="card project-card">
-          <h3>Recharge & Payment Failure Analytics</h3>
-          <p class="muted">Region-wise recharge volume, patterns, and failure counts for proactive ops decisions. (Power BI, Power Query)</p>
-        </article>
-
-        <article class="card project-card">
-          <h3>Referral Program Analytics</h3>
-          <p class="muted">Trends in referrals, acquisition, success/failure flows with KPIs. (Power BI, DAX)</p>
-        </article>
-
-        <article class="card project-card">
-          <h3>Activation & Deactivation Trends</h3>
-          <p class="muted">Reason-wise deactivation, daily/weekly/monthly activations and churn insights. (Power BI)</p>
-        </article>
-
-        <article class="card project-card">
-          <h3>Offer Pack Revenue Contribution</h3>
-          <p class="muted">Identify popular plans and revenue mix to inform product strategy. (Power BI, Oracle SQL)</p>
-        </article>
-
-        <article class="card project-card">
-          <h3>Work Order Management KPIs</h3>
-          <p class="muted">Creation/completion/pending trends; KPIs for open, overdue, completed orders. (Power BI)</p>
-        </article>
-
-        <article class="card project-card" hidden>
-          <h3>RLS & Refresh Optimization</h3>
-          <p class="muted">Static/Dynamic RLS, scheduled & incremental refresh for secure, performant datasets. (Power BI)</p>
-        </article>
-
-        <article class="card project-card" hidden>
-          <h3>Paginated Reporting Suite</h3>
-          <p class="muted">Pixel-perfect reports for finance/ops with Report Builder. (Power BI Report Builder)</p>
-        </article>
-
-        <article class="card project-card" hidden>
-          <h3>EAI Change Requests</h3>
-          <p class="muted">200+ CRs across UAT/Prod for product master and pack configuration. (Oracle SQL, MySQL)</p>
-        </article>
+        <div class="filters" aria-label="Project filters">
+          <button class="filter active" data-filter="all">All</button>
+          <button class="filter" data-filter="bi">Power BI</button>
+          <button class="filter" data-filter="sql">SQL</button>
+          <button class="filter" data-filter="py">Python</button>
+        </div>
       </div>
 
-      <div class="center">
-        <button class="btn btn-ghost" data-toggle="show-more" data-target="#projects">Show More Projects</button>
+      <div class="grid cols-2" id="projectList">
+        <!-- Project card -->
+        <article class="card project" data-tags="bi">
+          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=Sales+BI+Dashboard" alt="Sales BI dashboard thumbnail"/>
+          <div>
+            <h3>Global Sales Insights</h3>
+            <p class="tag">Power BI • DAX • Data Modeling</p>
+            <p class="muted">Built an interactive sales dashboard with cohort analysis, margin waterfall, and regional drill-through.</p>
+            <p><a class="accent" href="#dashboards">See dashboard image</a></p>
+          </div>
+        </article>
+
+        <article class="card project" data-tags="sql">
+          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=SQL+Warehouse" alt="SQL project thumbnail"/>
+          <div>
+            <h3>Retail Data Warehouse</h3>
+            <p class="tag">SQL • ETL • Star Schema</p>
+            <p class="muted">Designed and optimized a star schema with partitioned fact tables, reducing query time by 48%.</p>
+            <p><a class="accent" href="#">Case study</a></p>
+          </div>
+        </article>
+
+        <article class="card project" data-tags="py">
+          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=Python+Analytics" alt="Python analytics project"/>
+          <div>
+            <h3>Churn Prediction</h3>
+            <p class="tag">Python • scikit-learn</p>
+            <p class="muted">Built an explainable churn model with SHAP to surface drivers and reduce false positives.</p>
+            <p><a class="accent" href="#">Read more</a></p>
+          </div>
+        </article>
+
+        <article class="card project" data-tags="bi">
+          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=Finance+BI" alt="Finance BI dashboard"/>
+          <div>
+            <h3>Finance Performance Monitor</h3>
+            <p class="tag">Power BI • DAX</p>
+            <p class="muted">Executive scorecard with YOY variance analysis, scenario slicers, and role-level security.</p>
+            <p><a class="accent" href="#dashboards">See dashboard image</a></p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Certifications -->
-  <section id="certs" class="section alt">
+  <!-- ====== Power BI Dashboards (image gallery with lightbox) ====== -->
+  <section id="dashboards">
     <div class="container">
-      <header class="section-header">
-        <p class="eyebrow">My</p>
-        <h2>Awards & Certificates</h2>
-      </header>
-
-      <div class="grid three cards-grid" data-collapsible>
-        <article class="card">
-          <h3><a href="https://learn.microsoft.com/en-us/users/sujithts-9803/transcript/vymeouy4ln9000o" target="_blank" rel="noopener">PL-300: Microsoft Power BI Data Analyst</a></h3>
-          <p class="muted">Credential ID: 9272409BB99CF3E</p>
-        </article>
-
-        <article class="card">
-          <h3>Udemy — Introduction to Agile Methodologies</h3>
-        </article>
-
-        <article class="card">
-          <h3>TCS — Contextual Master (Recognition)</h3>
-        </article>
-
-        <article class="card" hidden>
-          <h3>Tata Play — Star of the Month & Special Initiative</h3>
-        </article>
+      <div class="section__head">
+        <h2>Power BI Dashboards</h2>
+        <span class="muted">Upload your images below (PNG/JPG)</span>
       </div>
-
-      <div class="center">
-        <button class="btn btn-ghost" data-toggle="show-more" data-target="#certs">Show More Certifications</button>
+      <div class="card">
+        <div class="dash__grid" id="dashGrid">
+          <!-- Replace the src attributes with your Power BI dashboard images -->
+          <figure class="dash__item"><img src="https://dummyimage.com/900x600/101318/ffffff&text=Dashboard+1" alt="Dashboard 1"><figcaption class="dash__caption">Sales Overview</figcaption></figure>
+          <figure class="dash__item"><img src="https://dummyimage.com/900x600/101318/ffffff&text=Dashboard+2" alt="Dashboard 2"><figcaption class="dash__caption">Customer Segments</figcaption></figure>
+          <figure class="dash__item"><img src="https://dummyimage.com/900x600/101318/ffffff&text=Dashboard+3" alt="Dashboard 3"><figcaption class="dash__caption">Finance KPIs</figcaption></figure>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
+  <!-- ====== Awards ====== -->
+  <section id="awards">
     <div class="container">
-      <header class="section-header">
-        <p class="eyebrow">Get in Touch</p>
-        <h2>Contact Me</h2>
-      </header>
-
-      <div class="grid three contact-grid">
+      <div class="section__head">
+        <h2>Awards</h2>
+        <span class="muted">Recognition & Achievements</span>
+      </div>
+      <div class="awards">
         <article class="card">
-          <h3>Location</h3>
-          <p>Bengaluru, India</p>
-          <p><a href="https://maps.app.goo.gl/" target="_blank" rel="noopener">Open in Maps</a></p>
+          <h3>Top Analyst Award</h3>
+          <p class="muted">Company A • 2024</p>
+          <p>Recognized for delivering analytics that increased quarterly revenue visibility across APAC.</p>
         </article>
-
         <article class="card">
-          <h3>Phone</h3>
-          <p><a href="tel:+919480562681">+91 94805 62681</a></p>
-          <h3>Email</h3>
-          <p><a href="mailto:sujithsiddarth234@gmail.com">sujithsiddarth234@gmail.com</a></p>
-        </article>
-
-        <article class="card">
-          <h3>Profiles</h3>
-          <p><a href="https://www.linkedin.com/in/sujith-siddarth-514830208/" target="_blank" rel="noopener">LinkedIn</a></p>
-          <p><a href="https://learn.microsoft.com/en-us/users/sujithts-9803/transcript/vymeouy4ln9000o" target="_blank" rel="noopener">MS Learn Transcript</a></p>
-          <p><a href="https://wa.me/919480562681" target="_blank" rel="noopener">WhatsApp</a></p>
+          <h3>Hackathon Winner</h3>
+          <p class="muted">DataFest • 2023</p>
+          <p>Built a real-time dashboard for public transit reliability with open data APIs.</p>
         </article>
       </div>
-
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! This is a static demo.');">
-        <input type="text" name="name" placeholder="Your name" required />
-        <input type="email" name="email" placeholder="Your email" required />
-        <textarea name="message" rows="4" placeholder="Your message"></textarea>
-        <button class="btn" type="submit">Send Message</button>
-      </form>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>Developed by <a href="https://www.linkedin.com/in/sujith-siddarth-514830208/" target="_blank" rel="noopener">Sujith TS</a> · © <span id="year"></span> All rights reserved.</p>
+  <!-- ====== Contact ====== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section__head">
+        <h2>Contact</h2>
+        <span class="muted">Let’s build something great</span>
+      </div>
+      <div class="contact">
+        <div class="card">
+          <form name="contact" onsubmit="event.preventDefault(); alert('Thanks! Your message has been prepared. Connect this form to a backend or Formspree to receive emails.');">
+            <label>
+              <span class="sr-only">Name</span>
+              <input class="input" type="text" name="name" placeholder="Your name" required>
+            </label>
+            <label>
+              <span class="sr-only">Email</span>
+              <input class="input" type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+              <span class="sr-only">Message</span>
+              <textarea name="message" placeholder="Tell me about your project…" required></textarea>
+            </label>
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="card">
+          <h3>Direct</h3>
+          <p><b>Email:</b> <a class="accent" href="mailto:you@example.com">you@example.com</a></p>
+          <p><b>Phone:</b> <a class="accent" href="tel:+911234567890">+91 12345 67890</a></p>
+          <p><b>Location:</b> Your City, India</p>
+          <div class="divider"></div>
+          <h3>Social</h3>
+          <p>
+            <a class="accent" href="#">LinkedIn</a> ·
+            <a class="accent" href="#">GitHub</a> ·
+            <a class="accent" href="#">Portfolio PDF</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- ====== Small JS (optional but enhances UX) ====== -->
   <script>
     // Mobile nav toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const nav = document.getElementById('site-nav');
-    navToggle.addEventListener('click', () => {
-      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('open');
-      document.body.classList.toggle('no-scroll', !expanded);
+    const toggle = document.querySelector('.nav__toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click',()=>{
+      const open = menu.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open);
     });
 
     // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
         const id = a.getAttribute('href');
-        if (id.length > 1 && document.querySelector(id)) {
+        if(id.length>1){
           e.preventDefault();
-          document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-          nav.classList.remove('open');
-          navToggle.setAttribute('aria-expanded', 'false');
-          document.body.classList.remove('no-scroll');
+          document.querySelector(id).scrollIntoView({behavior:'smooth'});
+          menu.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', false);
         }
-      });
-    });
+      })
+    })
 
-    // Show more (projects/certs)
-    function setupShowMore(sectionId) {
-      const section = document.querySelector(sectionId);
-      if (!section) return;
-      const grid = section.querySelector('[data-collapsible]');
-      const hiddenCards = () => Array.from(grid.querySelectorAll('[hidden]'));
-      const btn = section.querySelector('[data-toggle="show-more"]');
+    // Project filters
+    const filters = document.querySelectorAll('.filter');
+    const cards = document.querySelectorAll('.project');
+    filters.forEach(f=>f.addEventListener('click',()=>{
+      filters.forEach(x=>x.classList.remove('active'));
+      f.classList.add('active');
+      const tag = f.dataset.filter;
+      cards.forEach(c=>{
+        c.style.display = (tag==='all' || c.dataset.tags.includes(tag)) ? '' : 'none';
+      })
+    }))
 
-      btn?.addEventListener('click', () => {
-        const currentlyHidden = hiddenCards();
-        const revealCount = 6;
-        currentlyHidden.slice(0, revealCount).forEach(el => el.hidden = false);
-        if (hiddenCards().length === 0) {
-          btn.disabled = true;
-          btn.textContent = 'All caught up';
-        }
-      });
-    }
+    // Lightbox for dashboard images
+    const grid = document.getElementById('dashGrid');
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.innerHTML = `
+      <div class="lightbox__inner"><img alt="Expanded dashboard"></div>
+      <button class="lightbox__close" aria-label="Close">Close ✕</button>
+    `;
+    document.body.appendChild(lightbox);
 
-    setupShowMore('#projects');
-    setupShowMore('#certs');
+    const lbImg = lightbox.querySelector('img');
+    const lbClose = lightbox.querySelector('.lightbox__close');
+
+    grid.addEventListener('click', (e)=>{
+      const img = e.target.closest('.dash__item img');
+      if(!img) return;
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('is-open');
+    })
+    lbClose.addEventListener('click', ()=> lightbox.classList.remove('is-open'));
+    lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) lightbox.classList.remove('is-open') })
 
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
