@@ -1,512 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Portfolio website showcasing profile, education, skills, certifications, projects, Power BI dashboards, awards, and contact details." />
-  
-  <!-- ====== FAVICON (optional) ====== -->
-  <!-- <link rel="icon" href="assets/favicon.png" /> -->
-
-  <!-- ====== STYLES ====== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
   <style>
-    :root{
-      --bg:#000000;           /* Pure black background */
-      --card:#0f1115;         /* Dark card */
-      --muted:#a0a4ab;        /* Muted text */
-      --text:#e6e8eb;         /* Primary text */
-      --accent:#00e5ff;       /* Highlight color (change to taste) */
-      --accent-2:#7afcff33;   /* Subtle accent tint */
-      --ring: 0 0 0 3px var(--accent-2);
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.5);
-      --trans: 220ms ease;
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #00ffff;
+    }
+    .profile-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #00ffff;
+      transition: box-shadow 0.3s ease;
+    }
+    .profile-img:hover {
+      box-shadow: 0 0 20px #00ffff;
     }
 
-    /* Reset-ish */
-    *,*::before,*::after{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0; font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background:var(--bg); color:var(--text);
+    nav {
+      text-align: center;
+      margin: 1rem 0;
     }
-    img{ max-width:100%; display:block }
-    a{ color:inherit; text-decoration:none }
-    h1,h2,h3{ line-height:1.2; margin:0 0 .6rem }
-    p{ margin:.4rem 0 0 }
-    section{ padding: 80px 20px }
-    .container{ max-width:1100px; margin:0 auto }
-
-    /* ====== Header / Nav ====== */
-    header{
-      position:sticky; top:0; z-index:50; backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.6));
-      border-bottom:1px solid rgba(255,255,255,.06);
+    nav a {
+      color: #00ffff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
     }
-    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 20px; }
-    .brand{ display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:.3px }
-    .brand__dot{ width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 18px var(--accent) }
-
-    .menu{ display:flex; gap:18px; align-items:center }
-    .menu a{ padding:8px 12px; border-radius:999px; color:var(--muted); transition: color var(--trans), background var(--trans) }
-    .menu a:hover{ color:var(--text); background:rgba(122,252,255,0.1) }
-    .cta{
-      border:1px solid var(--accent); color:var(--accent);
-      padding:8px 14px; border-radius:999px; transition: background var(--trans), color var(--trans);
-    }
-    .cta:hover{ background:var(--accent); color:#001015 }
-
-    .nav__toggle{ display:none; background:none; border:0; color:var(--text); font-size:1.3rem }
-    @media (max-width:800px){
-      .menu{ display:none }
-      .menu.is-open{ display:flex; position:absolute; left:0; right:0; top:56px; background:#06080d; padding:14px 20px; flex-direction:column; gap:10px; border-bottom:1px solid rgba(255,255,255,.06) }
-      .nav__toggle{ display:block }
+    nav a:hover {
+      text-decoration: underline;
     }
 
-    /* ====== Hero ====== */
-    .hero{ display:grid; grid-template-columns: 1.1fr .9fr; gap:34px; align-items:center }
-    .hero__tag{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; font-size:.9rem; color:var(--accent); background:rgba(122,252,255,0.08); border:1px solid rgba(122,252,255,0.25) }
-    .hero__title{ font-size: clamp(32px, 5vw, 54px) }
-    .hero__subtitle{ color:var(--muted); margin-top:.6rem }
-    .hero__actions{ display:flex; gap:12px; margin-top:22px }
-    .btn{ display:inline-flex; align-items:center; gap:8px; padding:12px 16px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0a0d12; transition: transform var(--trans), border-color var(--trans); }
-    .btn:hover{ transform: translateY(-2px); border-color: var(--accent) }
-
-    .avatar{
-      width: 210px; aspect-ratio:1; border-radius: 22px; overflow:hidden; border:1px solid rgba(255,255,255,.08); box-shadow: var(--shadow);
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
     }
-    .hero__right{ display:flex; justify-content:center }
-
-    @media (max-width:900px){ .hero{ grid-template-columns:1fr; text-align:center } .hero__right{ order:-1 } .hero__actions{ justify-content:center } }
-
-    /* ====== Cards / shared ====== */
-    .grid{ display:grid; gap:18px }
-    .grid.cols-3{ grid-template-columns: repeat(3, 1fr) }
-    .grid.cols-2{ grid-template-columns: repeat(2, 1fr) }
-    @media (max-width:900px){ .grid.cols-3, .grid.cols-2{ grid-template-columns: 1fr } }
-
-    .card{
-      background: var(--card);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius: var(--radius);
-      padding:18px; box-shadow: var(--shadow);
-      transition: transform var(--trans), border-color var(--trans), box-shadow var(--trans);
+    section h2 {
+      color: #00ffff;
+      border-bottom: 2px solid #00ffff;
+      display: inline-block;
+      margin-bottom: 1rem;
     }
-    .card:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,.18) }
-    .card h3{ margin-bottom:.3rem }
 
-    .pill{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#0a0e14; border:1px solid rgba(255,255,255,.08); color:var(--muted); font-size:.9rem }
-    .pill i{ width:8px; height:8px; border-radius:999px; background:var(--accent) }
-
-    /* ====== Education timeline ====== */
-    .timeline{ position:relative; padding-left:26px; }
-    .timeline::before{ content:""; position:absolute; left:8px; top:0; bottom:0; width:2px; background:linear-gradient(var(--accent), transparent) }
-    .timeline__item{ margin: 18px 0; position:relative }
-    .timeline__item::before{ content:""; position:absolute; left:-21px; top:6px; width:10px; height:10px; border-radius:999px; background:var(--accent); box-shadow:0 0 12px var(--accent) }
-    .timeline__meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:.95rem }
-
-    /* ====== Skills ====== */
-    .skills{ display:flex; flex-wrap:wrap; gap:10px }
-    .skill{ background:#0a0d12; border:1px solid rgba(255,255,255,.1); border-radius:999px; padding:8px 12px; font-size:.95rem; color:#d6dde3 }
-
-    /* ====== Projects ====== */
-    .filters{ display:flex; gap:10px; flex-wrap:wrap; margin:8px 0 16px }
-    .filter{ padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:#0a0d12; color:var(--muted); cursor:pointer; transition:border-color var(--trans), color var(--trans) }
-    .filter.active, .filter:hover{ border-color:var(--accent); color:var(--text) }
-
-    .project{
-      display:grid; grid-template-columns: 160px 1fr; gap:14px; align-items:start
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      margin-top: 1rem;
     }
-    .project img{ width:100%; height:110px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.08) }
-    .tag{ font-size:.85rem; color:var(--muted) }
-    @media (max-width:700px){ .project{ grid-template-columns:1fr } }
-
-    /* ====== Dashboards (Power BI) ====== */
-    .dash__grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px }
-    .dash__item{ position:relative; cursor:zoom-in }
-    .dash__item img{ border-radius:12px; border:1px solid rgba(255,255,255,.08) }
-    .dash__caption{ position:absolute; left:10px; bottom:10px; background:rgba(0,0,0,.55); padding:6px 10px; border-radius:999px; font-size:.9rem }
-    @media (max-width:900px){ .dash__grid{ grid-template-columns: 1fr 1fr } }
-    @media (max-width:600px){ .dash__grid{ grid-template-columns: 1fr } }
-
-    /* ====== Awards ====== */
-    .awards{ display:grid; grid-template-columns: repeat(2, 1fr); gap:14px }
-    @media (max-width:800px){ .awards{ grid-template-columns: 1fr } }
-
-    /* ====== Contact ====== */
-    .contact{
-      display:grid; grid-template-columns: 1.1fr .9fr; gap:20px; align-items:start
+    .skill-card {
+      background: #111;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .contact form{ display:grid; gap:10px }
-    .input, textarea{ background:#0a0d12; border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:12px; color:var(--text) }
-    .input:focus, textarea:focus{ outline:none; box-shadow: var(--ring); border-color: var(--accent) }
-    textarea{ min-height:120px; resize:vertical }
-    @media (max-width:900px){ .contact{ grid-template-columns:1fr } }
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #00ffff;
+    }
+    .skill-card img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-bottom: 0.5rem;
+    }
+    .skill-card p {
+      margin: 0;
+    }
 
-    /* ====== Footer ====== */
-    footer{ padding:30px 20px; color:var(--muted); border-top:1px solid rgba(255,255,255,.06) }
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: #111;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #00ffff;
+    }
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .project-card div {
+      padding: 1rem;
+    }
 
-    /* ====== Utilities ====== */
-    .section__head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px }
-    .section__head h2{ font-size: clamp(22px, 3.5vw, 28px) }
-    .muted{ color:var(--muted) }
-    .accent{ color:var(--accent) }
-    .divider{ height:1px; background:linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); margin:18px 0 }
-    .sr-only{ position:absolute; left:-9999px }
-
-    /* ====== Lightbox ====== */
-    .lightbox{ position:fixed; inset:0; display:none; place-items:center; background: rgba(0,0,0,.8); z-index:100 }
-    .lightbox.is-open{ display:grid }
-    .lightbox__inner{ max-width:min(1100px, 92vw); max-height: 86vh }
-    .lightbox__inner img{ width:100%; height:auto; border-radius:12px; border:1px solid rgba(255,255,255,.15) }
-    .lightbox__close{ position:absolute; top:18px; right:18px; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.2); background:#0f1115; cursor:pointer }
-
-    /* ====== Company logos row ====== */
-    .logos{ display:flex; gap:20px; flex-wrap:wrap; align-items:center; opacity:.9 }
-    .logos img{ height:30px; filter: grayscale(1) brightness(1.4); opacity:.8 }
+    /* Contact */
+    .contact-info p {
+      margin: 0.5rem 0;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #111;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
-  <!-- ====== Header / Nav ====== -->
   <header>
-    <nav class="nav container" aria-label="Primary">
-      <div class="brand">
-        <span class="brand__dot"></span>
-        <a href="#home" class="brand__name">Your Name</a>
-      </div>
-      <button class="nav__toggle" aria-expanded="false" aria-controls="menu">☰</button>
-      <div id="menu" class="menu" role="menubar">
-        <a href="#home" role="menuitem">Home</a>
-        <a href="#education" role="menuitem">Education</a>
-        <a href="#skills" role="menuitem">Skills</a>
-        <a href="#certs" role="menuitem">Certifications</a>
-        <a href="#projects" role="menuitem">Projects</a>
-        <a href="#dashboards" role="menuitem">Power BI</a>
-        <a href="#awards" role="menuitem">Awards</a>
-        <a href="#contact" role="menuitem" class="cta">Contact</a>
-      </div>
-    </nav>
+    <img src="profile.jpg" alt="My Profile Photo" class="profile-img">
+    <h1>My Portfolio</h1>
+    <p>Data Analyst | BI Developer | SQL Specialist</p>
   </header>
 
-  <!-- ====== Hero ====== -->
-  <main id="home" class="container" style="padding: 54px 20px 0">
-    <section class="hero">
-      <div class="hero__left">
-        <span class="hero__tag"><i class="brand__dot" style="width:6px;height:6px"></i> Available for opportunities</span>
-        <h1 class="hero__title">Hi, I'm <span class="accent">Your Name</span> — Data Analyst</h1>
-        <p class="hero__subtitle">I turn raw data into clear stories. I specialize in <b>Power BI</b>, <b>SQL</b>, and <b>Python</b> to build dashboards and analytics that drive decisions.</p>
-        <div class="hero__actions">
-          <a class="btn" href="#projects">View Projects</a>
-          <a class="btn" href="mailto:you@example.com">Email Me</a>
-          <!-- Optional Resume link -->
-          <!-- <a class="btn" href="assets/Your_Resume.pdf" download>Download CV</a> -->
-        </div>
-        <div class="divider"></div>
-        <div class="logos" aria-label="Companies I’ve worked with or for">
-          <!-- Replace with your company logos (PNG/SVG). Height auto-adjusts. -->
-          <!-- Example placeholders -->
-          <img src="https://dummyimage.com/120x40/0a0d12/ffffff&text=Company+A" alt="Company A"/>
-          <img src="https://dummyimage.com/120x40/0a0d12/ffffff&text=Company+B" alt="Company B"/>
-          <img src="https://dummyimage.com/120x40/0a0d12/ffffff&text=Company+C" alt="Company C"/>
-        </div>
-      </div>
-      <div class="hero__right">
-        <figure class="avatar" aria-label="Profile photo">
-          <!-- Replace src with your profile image -->
-          <img src="https://dummyimage.com/600x600/101318/ffffff&text=Your+Photo" alt="Your profile photo"/>
-        </figure>
-      </div>
-    </section>
-  </main>
+  <nav>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#projects">Projects</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-  <!-- ====== Education ====== -->
   <section id="education">
-    <div class="container">
-      <div class="section__head">
-        <h2>Education</h2>
-        <span class="pill"><i></i> Formal & Self-Learning</span>
-      </div>
-      <div class="card">
-        <div class="timeline">
-          <!-- Duplicate timeline__item blocks for more entries -->
-          <div class="timeline__item">
-            <h3>B.Tech in Computer Science</h3>
-            <div class="timeline__meta">
-              <span>ABC University</span> •
-              <span>2019 – 2023</span>
-            </div>
-            <p class="muted">CGPA: 8.6/10 • Relevant coursework: Data Mining, DBMS, Stats</p>
-          </div>
-          <div class="timeline__item">
-            <h3>Google Data Analytics Professional Certificate</h3>
-            <div class="timeline__meta">
-              <span>Coursera</span> • <span>2024</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2>Education</h2>
+    <p><strong>Bachelor of Technology in Computer Science</strong> - XYZ University</p>
   </section>
 
-  <!-- ====== Skills ====== -->
   <section id="skills">
-    <div class="container">
-      <div class="section__head">
-        <h2>Skills</h2>
-        <span class="muted">Core tech I use</span>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/power-bi.png" alt="Power BI">
+        <p>Power BI</p>
       </div>
-      <div class="card">
-        <div class="skills">
-          <!-- Add / remove skill pills -->
-          <span class="skill">Power BI</span>
-          <span class="skill">DAX</span>
-          <span class="skill">Power Query</span>
-          <span class="skill">SQL</span>
-          <span class="skill">Python</span>
-          <span class="skill">Excel</span>
-          <span class="skill">ETL</span>
-          <span class="skill">Data Modeling</span>
-          <span class="skill">Git</span>
-        </div>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/microsoft-power-automate-2020.png" alt="Power Automate">
+        <p>Power Automate</p>
       </div>
-    </div>
-  </section>
-
-  <!-- ====== Certifications ====== -->
-  <section id="certs">
-    <div class="container">
-      <div class="section__head">
-        <h2>Certifications</h2>
-        <span class="muted">Verified credentials</span>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/mysql-logo.png" alt="MySQL">
+        <p>MySQL</p>
       </div>
-      <div class="grid cols-3">
-        <!-- Duplicate these certification cards as needed -->
-        <article class="card">
-          <h3>PL-300: Microsoft Power BI Data Analyst</h3>
-          <p class="muted">Microsoft • 2025</p>
-          <p><a href="#" class="accent">View Credential</a></p>
-        </article>
-        <article class="card">
-          <h3>SQL (Advanced)</h3>
-          <p class="muted">HackerRank • 2024</p>
-          <p><a href="#" class="accent">View Credential</a></p>
-        </article>
-        <article class="card">
-          <h3>Data Visualization with Python</h3>
-          <p class="muted">IBM • 2023</p>
-          <p><a href="#" class="accent">View Credential</a></p>
-        </article>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/fluency/96/snowflake.png" alt="Snowflake">
+        <p>Snowflake</p>
+      </div>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/microsoft-excel-2019--v1.png" alt="Excel">
+        <p>Excel</p>
+      </div>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/report-card.png" alt="Paginated Reports">
+        <p>Paginated Reports</p>
+      </div>
+      <div class="skill-card">
+        <img src="https://img.icons8.com/color/96/oracle-logo.png" alt="Oracle SQL">
+        <p>Oracle SQL</p>
       </div>
     </div>
   </section>
 
-  <!-- ====== Projects ====== -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <ul>
+      <li>Microsoft Certified: Data Analyst Associate</li>
+      <li>Snowflake SnowPro Core Certification</li>
+      <li>Oracle SQL Developer Certified</li>
+    </ul>
+  </section>
+
   <section id="projects">
-    <div class="container">
-      <div class="section__head">
-        <h2>Projects</h2>
-        <div class="filters" aria-label="Project filters">
-          <button class="filter active" data-filter="all">All</button>
-          <button class="filter" data-filter="bi">Power BI</button>
-          <button class="filter" data-filter="sql">SQL</button>
-          <button class="filter" data-filter="py">Python</button>
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img src="dashboard1.png" alt="Power BI Dashboard 1">
+        <div>
+          <h3>Sales Analytics Dashboard</h3>
+          <p>Interactive Power BI dashboard for sales trends.</p>
         </div>
       </div>
-
-      <div class="grid cols-2" id="projectList">
-        <!-- Project card -->
-        <article class="card project" data-tags="bi">
-          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=Sales+BI+Dashboard" alt="Sales BI dashboard thumbnail"/>
-          <div>
-            <h3>Global Sales Insights</h3>
-            <p class="tag">Power BI • DAX • Data Modeling</p>
-            <p class="muted">Built an interactive sales dashboard with cohort analysis, margin waterfall, and regional drill-through.</p>
-            <p><a class="accent" href="#dashboards">See dashboard image</a></p>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="sql">
-          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=SQL+Warehouse" alt="SQL project thumbnail"/>
-          <div>
-            <h3>Retail Data Warehouse</h3>
-            <p class="tag">SQL • ETL • Star Schema</p>
-            <p class="muted">Designed and optimized a star schema with partitioned fact tables, reducing query time by 48%.</p>
-            <p><a class="accent" href="#">Case study</a></p>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="py">
-          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=Python+Analytics" alt="Python analytics project"/>
-          <div>
-            <h3>Churn Prediction</h3>
-            <p class="tag">Python • scikit-learn</p>
-            <p class="muted">Built an explainable churn model with SHAP to surface drivers and reduce false positives.</p>
-            <p><a class="accent" href="#">Read more</a></p>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="bi">
-          <img src="https://dummyimage.com/600x400/12161d/ffffff&text=Finance+BI" alt="Finance BI dashboard"/>
-          <div>
-            <h3>Finance Performance Monitor</h3>
-            <p class="tag">Power BI • DAX</p>
-            <p class="muted">Executive scorecard with YOY variance analysis, scenario slicers, and role-level security.</p>
-            <p><a class="accent" href="#dashboards">See dashboard image</a></p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ====== Power BI Dashboards (image gallery with lightbox) ====== -->
-  <section id="dashboards">
-    <div class="container">
-      <div class="section__head">
-        <h2>Power BI Dashboards</h2>
-        <span class="muted">Upload your images below (PNG/JPG)</span>
-      </div>
-      <div class="card">
-        <div class="dash__grid" id="dashGrid">
-          <!-- Replace the src attributes with your Power BI dashboard images -->
-          <figure class="dash__item"><img src="https://dummyimage.com/900x600/101318/ffffff&text=Dashboard+1" alt="Dashboard 1"><figcaption class="dash__caption">Sales Overview</figcaption></figure>
-          <figure class="dash__item"><img src="https://dummyimage.com/900x600/101318/ffffff&text=Dashboard+2" alt="Dashboard 2"><figcaption class="dash__caption">Customer Segments</figcaption></figure>
-          <figure class="dash__item"><img src="https://dummyimage.com/900x600/101318/ffffff&text=Dashboard+3" alt="Dashboard 3"><figcaption class="dash__caption">Finance KPIs</figcaption></figure>
+      <div class="project-card">
+        <img src="dashboard2.png" alt="Power BI Dashboard 2">
+        <div>
+          <h3>HR Insights Dashboard</h3>
+          <p>Employee performance & attrition analysis in Power BI.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ====== Awards ====== -->
   <section id="awards">
-    <div class="container">
-      <div class="section__head">
-        <h2>Awards</h2>
-        <span class="muted">Recognition & Achievements</span>
-      </div>
-      <div class="awards">
-        <article class="card">
-          <h3>Top Analyst Award</h3>
-          <p class="muted">Company A • 2024</p>
-          <p>Recognized for delivering analytics that increased quarterly revenue visibility across APAC.</p>
-        </article>
-        <article class="card">
-          <h3>Hackathon Winner</h3>
-          <p class="muted">DataFest • 2023</p>
-          <p>Built a real-time dashboard for public transit reliability with open data APIs.</p>
-        </article>
-      </div>
-    </div>
+    <h2>Awards</h2>
+    <ul>
+      <li>Best Data Visualization Award - XYZ Company</li>
+      <li>Employee of the Month - ABC Corp</li>
+    </ul>
   </section>
 
-  <!-- ====== Contact ====== -->
   <section id="contact">
-    <div class="container">
-      <div class="section__head">
-        <h2>Contact</h2>
-        <span class="muted">Let’s build something great</span>
-      </div>
-      <div class="contact">
-        <div class="card">
-          <form name="contact" onsubmit="event.preventDefault(); alert('Thanks! Your message has been prepared. Connect this form to a backend or Formspree to receive emails.');">
-            <label>
-              <span class="sr-only">Name</span>
-              <input class="input" type="text" name="name" placeholder="Your name" required>
-            </label>
-            <label>
-              <span class="sr-only">Email</span>
-              <input class="input" type="email" name="email" placeholder="you@example.com" required>
-            </label>
-            <label>
-              <span class="sr-only">Message</span>
-              <textarea name="message" placeholder="Tell me about your project…" required></textarea>
-            </label>
-            <button class="btn" type="submit">Send Message</button>
-          </form>
-        </div>
-        <div class="card">
-          <h3>Direct</h3>
-          <p><b>Email:</b> <a class="accent" href="mailto:you@example.com">you@example.com</a></p>
-          <p><b>Phone:</b> <a class="accent" href="tel:+911234567890">+91 12345 67890</a></p>
-          <p><b>Location:</b> Your City, India</p>
-          <div class="divider"></div>
-          <h3>Social</h3>
-          <p>
-            <a class="accent" href="#">LinkedIn</a> ·
-            <a class="accent" href="#">GitHub</a> ·
-            <a class="accent" href="#">Portfolio PDF</a>
-          </p>
-        </div>
-      </div>
+    <h2>Contact</h2>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:yourname@email.com" style="color:#00ffff;">yourname@email.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank" style="color:#00ffff;">linkedin.com/in/yourprofile</a></p>
+      <p>GitHub: <a href="https://github.com/yourusername" target="_blank" style="color:#00ffff;">github.com/yourusername</a></p>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <p>© <span id="year"></span> Your Name. All rights reserved.</p>
-    </div>
+    <p>© 2025 Your Name | Portfolio</p>
   </footer>
-
-  <!-- ====== Small JS (optional but enhances UX) ====== -->
-  <script>
-    // Mobile nav toggle
-    const toggle = document.querySelector('.nav__toggle');
-    const menu = document.getElementById('menu');
-    toggle.addEventListener('click',()=>{
-      const open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open);
-    });
-
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const id = a.getAttribute('href');
-        if(id.length>1){
-          e.preventDefault();
-          document.querySelector(id).scrollIntoView({behavior:'smooth'});
-          menu.classList.remove('is-open');
-          toggle.setAttribute('aria-expanded', false);
-        }
-      })
-    })
-
-    // Project filters
-    const filters = document.querySelectorAll('.filter');
-    const cards = document.querySelectorAll('.project');
-    filters.forEach(f=>f.addEventListener('click',()=>{
-      filters.forEach(x=>x.classList.remove('active'));
-      f.classList.add('active');
-      const tag = f.dataset.filter;
-      cards.forEach(c=>{
-        c.style.display = (tag==='all' || c.dataset.tags.includes(tag)) ? '' : 'none';
-      })
-    }))
-
-    // Lightbox for dashboard images
-    const grid = document.getElementById('dashGrid');
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox';
-    lightbox.innerHTML = `
-      <div class="lightbox__inner"><img alt="Expanded dashboard"></div>
-      <button class="lightbox__close" aria-label="Close">Close ✕</button>
-    `;
-    document.body.appendChild(lightbox);
-
-    const lbImg = lightbox.querySelector('img');
-    const lbClose = lightbox.querySelector('.lightbox__close');
-
-    grid.addEventListener('click', (e)=>{
-      const img = e.target.closest('.dash__item img');
-      if(!img) return;
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lightbox.classList.add('is-open');
-    })
-    lbClose.addEventListener('click', ()=> lightbox.classList.remove('is-open'));
-    lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) lightbox.classList.remove('is-open') })
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
