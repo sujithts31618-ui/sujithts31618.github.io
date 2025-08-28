@@ -1,0 +1,179 @@
+:root{
+  --bg:#0f1115;
+  --card:#141820;
+  --muted:#99a1b3;
+  --text:#eef2ff;
+  --accent:#f5b301; /* gold */
+  --accent-2:#ffcc4d;
+  --ring:rgba(245,179,1,.35);
+  --radius:18px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* Layout */
+.topbar{
+  display:none;
+  position:sticky;top:0;z-index:40;
+  padding:14px 16px;background:#0b0d11;border-bottom:1px solid #1b2230;
+}
+.topbar .brand{font-weight:700;letter-spacing:.5px}
+.hamburger{
+  background:transparent;border:0;color:var(--text);font-size:22px;margin-right:10px
+}
+.wrapper{display:flex}
+
+.sidebar{
+  position:fixed;left:0;top:0;bottom:0;width:320px;padding:24px 22px;
+  background:#0b0d11;border-right:1px solid #1b2230;overflow:auto;
+}
+.sidebar.open{transform:translateX(0)}
+.profile-card{
+  background:var(--card);
+  border:1px solid #202838;
+  border-radius:var(--radius);
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.avatar{
+  width:140px;height:140px;border-radius:50%;
+  object-fit:cover;display:block;margin:0 auto 14px;
+  border:4px solid rgba(245,179,1,.4);box-shadow:0 0 0 6px rgba(245,179,1,.15);
+}
+.profile-card h1{font-size:1.4rem;text-align:center;margin:6px 0}
+.role{color:var(--muted);text-align:center;margin-top:-2px;margin-bottom:14px}
+
+.cta{display:flex;gap:10px;justify-content:center;margin:10px 0 14px}
+.btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  color:#1a1300;border:none;padding:10px 14px;font-weight:700;border-radius:12px;
+  box-shadow:0 6px 18px var(--ring);text-decoration:none;display:inline-block
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;color:var(--accent);border:1px solid var(--accent);
+}
+
+.quick-info{list-style:none;padding:0;margin:16px 0;border-top:1px dashed #263146;border-bottom:1px dashed #263146}
+.quick-info li{padding:8px 0;font-size:.95rem;display:flex;justify-content:space-between;color:#cbd5e1}
+.quick-info span{color:#8ea2c8}
+
+.side-nav{display:grid;gap:10px;margin:16px 0}
+.nav-link{
+  display:block;padding:10px 12px;border-radius:12px;border:1px solid #22304a;
+  background:#111623;color:#dbe6ff;text-decoration:none;
+}
+.nav-link:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+
+.socials{display:flex;gap:10px;justify-content:center;margin:10px 0}
+.socials a{
+  display:grid;place-items:center;width:36px;height:36px;border-radius:50%;
+  background:#0e1422;border:1px solid #23314a;text-decoration:none;color:#cfe1ff;font-weight:700
+}
+.mini-footer{margin-top:14px;color:#7f8aa5;font-size:.85rem;text-align:center}
+
+/* Main content column */
+.content{
+  margin-left:340px;
+  padding:32px 36px 70px;
+  max-width:1100px;
+}
+.section-title{
+  margin:0 0 14px;font-size:1.3rem;letter-spacing:.3px
+}
+.hero{
+  background:linear-gradient(180deg,rgba(255,204,77,.08),transparent);
+  border:1px solid #2a3347;border-radius:var(--radius);
+  padding:28px;margin-bottom:22px;
+}
+.badge{
+  display:inline-block;font-size:.8rem;padding:6px 10px;border-radius:999px;
+  border:1px solid var(--accent);color:var(--accent);background:rgba(245,179,1,.08);margin-bottom:10px
+}
+.hero h2{margin:6px 0 8px;font-size:2rem}
+.hero .accent{color:var(--accent)}
+.hero p{color:#c8d3ea;margin-bottom:14px}
+
+.card{
+  background:var(--card);
+  border:1px solid #202838;
+  border-radius:var(--radius);
+  padding:22px;margin-bottom:22px;box-shadow:var(--shadow);
+}
+
+/* About */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px
+}
+.checklist{padding-left:18px}
+.checklist li{margin-bottom:8px}
+.highlights{list-style:none;padding:0;margin:0}
+.highlights li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #2b3750}
+.highlights span{color:var(--accent);font-weight:700}
+
+/* Services */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.service{
+  border:1px solid #22304a;border-radius:14px;padding:16px;background:#0e1422
+}
+.service h4{margin:0 0 6px}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.skill{font-size:.95rem}
+.bar{height:10px;background:#0e1422;border:1px solid #23314a;border-radius:999px;overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+
+/* Projects */
+.project{
+  display:flex;flex-direction:column;border:1px solid #22304a;border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;background:#0e1422
+}
+.project img{width:100%;height:160px;object-fit:cover}
+.project-body{padding:12px}
+.project h4{margin:0 0 6px}
+
+/* Awards */
+.certs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.certs .cert{border:1px dashed #2b3750;border-radius:14px;padding:14px;background:#0e1422}
+
+/* Contact */
+.contact-form{display:grid;gap:12px}
+.contact-form label{display:block;font-size:.95rem;color:#cbd5e1}
+.contact-form input,.contact-form textarea{
+  width:100%;margin-top:6px;padding:12px 12px;border-radius:12px;background:#0e1422;color:#e5ecff;
+  border:1px solid #23314a;outline:none
+}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.contact-card{background:#0e1422;border:1px solid #23314a;border-radius:12px;padding:14px;color:#cfe1ff}
+.contact-card span{margin-right:8px}
+
+.footer{color:#8ea2c8;text-align:center;margin-top:24px}
+
+/* Responsive */
+@media (max-width: 1100px){
+  .content{margin-left:0}
+  .sidebar{transform:translateX(-105%);transition:.25s ease}
+  .topbar{display:flex;align-items:center;gap:12px}
+  .sidebar.open{transform:translateX(0)}
+}
+@media (max-width: 900px){
+  .grid-3{grid-template-columns:1fr 1fr}
+  .certs{grid-template-columns:1fr 1fr}
+  .contact-cards{grid-template-columns:1fr}
+}
+@media (max-width: 680px){
+  .about-grid,.skills .grid-2,.skills{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+}
