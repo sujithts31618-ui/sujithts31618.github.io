@@ -1,7 +1,7 @@
 :root{
   --bg: #000000;          /* Pure black background */
   --bg-alt: #111111;      /* Slightly lighter black for sections */
-  --card:#121212;         /* Dark grey for cards */
+  --card:#111111;         /* Dark grey for cards */
   --muted:#aaaaaa;        /* Softer grey text */
   --text:#f5f5f5;         /* Main text color */
   --accent:#ff8c00;       /* Dark orange highlight */
