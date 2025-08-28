@@ -1,193 +1,215 @@
-:root {
-  --bg: #0a0a0a;
-  --bg-alt: #111111;
-  --card: #1a1a1a;
-  --muted: #b0aead;
-  --text: #f5f5f5;
-  --accent: #ff8c00;
-  --accent-2: #ffa500;
-  --border: rgba(255, 140, 0, 0.15);
-  --shadow: 0 10px 30px rgba(255, 140, 0, 0.1);
-  --radius: 14px;
-  --container: 1120px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Mobile Topbar -->
+  <header class="topbar">
+    <button id="menuToggle" aria-label="Open menu" class="hamburger">☰</button>
+    <span class="brand">Portfolio</span>
+  </header>
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-  color:var(--text);
-  background: radial-gradient(1000px 600px at 10% -10%, rgba(56,189,248,.12), transparent) no-repeat,
-             linear-gradient(180deg, #0b1220 0%, #0b1220 60%, #0e1528 100%);
-}
-img{max-width:100%;display:block}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-p{line-height:1.7}
-h1,h2,h3{line-height:1.2;margin:0 0 .6rem}
-h1{font-size:clamp(2rem, 3.4vw, 3rem)}
-h2{font-size:clamp(1.6rem, 2.4vw, 2.2rem)}
-h3{font-size:1.1rem}
-.muted{color:var(--muted)}
+  <!-- Sidebar / Profile -->
+  <aside class="sidebar" id="sidebar">
+    <div class="profile-card">
+      <img src="assets/profile.jpg" alt="Your profile photo" class="avatar" />
+      <h1>Your Name</h1>
+      <p class="role">UI/UX Designer • Frontend Dev</p>
+      <div class="cta">
+        <a href="#contact" class="btn">Hire Me</a>
+        <a href="assets/Your_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download CV</a>
+      </div>
+      <ul class="quick-info">
+        <li><span>Experience:</span> 3+ years</li>
+        <li><span>Location:</span> City, Country</li>
+        <li><span>Email:</span> you@example.com</li>
+        <li><span>Phone:</span> +00 000 0000</li>
+      </ul>
+      <nav class="side-nav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#awards" class="nav-link">Awards</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="GitHub">gh</a>
+        <a href="#" aria-label="Dribbble">db</a>
+        <a href="#" aria-label="Twitter">tw</a>
+      </div>
+    </div>
+    <footer class="mini-footer">© <span id="y"></span> Your Name</footer>
+  </aside>
 
-.container{
-  width:min(100% - 2rem, var(--container));
-  margin-inline:auto;
-}
+  <!-- Main Content -->
+  <main class="content">
+    <!-- Hero / Intro -->
+    <section class="hero">
+      <div class="badge">Available for work</div>
+      <h2>Hi, I’m <span class="accent">Your Name</span> — I craft neat interfaces and performant frontends.</h2>
+      <p>I build delightful, accessible products with clean code and thoughtful design.</p>
+      <a href="#projects" class="btn">See My Work</a>
+    </section>
 
-.section{
-  padding: clamp(3rem, 6vw, 5rem) 0;
-}
-.section.alt{
-  background: linear-gradient(180deg, var(--bg-alt), #0e1528);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
+    <!-- About -->
+    <section id="about" class="card">
+      <h3 class="section-title">About Me</h3>
+      <p>
+        I’m a designer & frontend developer focused on building polished web experiences.
+        I love design systems, component-driven UIs, and shipping features users love.
+      </p>
+      <div class="about-grid">
+        <div>
+          <h4>What I Do</h4>
+          <ul class="checklist">
+            <li>Product & UI design</li>
+            <li>Responsive Frontend (React/Vanilla)</li>
+            <li>Design Systems & Accessibility</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Highlights</h4>
+          <ul class="highlights">
+            <li><span>25+</span> completed projects</li>
+            <li><span>4.9★</span> client rating</li>
+            <li><span>3</span> industry awards</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-.section-header{
-  text-align:center;
-  margin-bottom:2rem;
-}
-.eyebrow{
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-weight:700;
-  color:var(--accent);
-  font-size:.8rem;
-  margin:0 0 .5rem;
-}
-.accent{color:var(--accent)}
+    <!-- Services -->
+    <section id="services" class="card">
+      <h3 class="section-title">Services</h3>
+      <div class="grid-3">
+        <div class="service">
+          <h4>UI/UX Design</h4>
+          <p>Wireframes, user flows, prototypes, and visual systems that scale.</p>
+        </div>
+        <div class="service">
+          <h4>Frontend Dev</h4>
+          <p>Modern, fast, accessible websites with semantic HTML/CSS/JS.</p>
+        </div>
+        <div class="service">
+          <h4>Brand & Assets</h4>
+          <p>Logos, guidelines, and visuals that keep your product consistent.</p>
+        </div>
+      </div>
+    </section>
 
-.grid{
-  display:grid;
-  gap:1.2rem;
-}
-.grid.two{grid-template-columns: repeat(2, minmax(0,1fr))}
-.grid.three{grid-template-columns: repeat(3, minmax(0,1fr))}
-.grid.four{grid-template-columns: repeat(4, minmax(0,1fr))}
-@media (max-width: 980px){
-  .grid.four{grid-template-columns: repeat(2, minmax(0,1fr))}
-  .grid.three{grid-template-columns: repeat(2, minmax(0,1fr))}
-  .grid.two{grid-template-columns: 1fr}
-}
+    <!-- Skills -->
+    <section id="skills" class="card">
+      <h3 class="section-title">Skills</h3>
+      <div class="skills">
+        <div class="skill"><span>HTML5</span><div class="bar"><i style="width:95%"></i></div></div>
+        <div class="skill"><span>CSS3 / Tailwind</span><div class="bar"><i style="width:92%"></i></div></div>
+        <div class="skill"><span>JavaScript</span><div class="bar"><i style="width:88%"></i></div></div>
+        <div class="skill"><span>React</span><div class="bar"><i style="width:85%"></i></div></div>
+        <div class="skill"><span>Figma</span><div class="bar"><i style="width:90%"></i></div></div>
+        <div class="skill"><span>Accessibility (a11y)</span><div class="bar"><i style="width:80%"></i></div></div>
+      </div>
+    </section>
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:1.2rem;
-  box-shadow: var(--shadow);
-}
+    <!-- Projects -->
+    <section id="projects" class="card">
+      <h3 class="section-title">Projects</h3>
+      <div class="grid-3">
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt="Project 1" />
+          <div class="project-body">
+            <h4>Analytics Dashboard</h4>
+            <p>Responsive, data-rich admin UI.</p>
+          </div>
+        </a>
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?q=80&w=800&auto=format&fit=crop" alt="Project 2" />
+          <div class="project-body">
+            <h4>E-commerce Store</h4>
+            <p>Headless storefront with clean UX.</p>
+          </div>
+        </a>
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Project 3" />
+          <div class="project-body">
+            <h4>Portfolio Template</h4>
+            <p>Minimal, fast, accessible theme.</p>
+          </div>
+        </a>
+      </div>
+    </section>
 
-/* Header */
-.site-header{
-  position:sticky; top:0; z-index:50;
-  backdrop-filter: blur(12px);
-  background:linear-gradient(180deg, rgba(11,18,32,.8), rgba(11,18,32,.4));
-  border-bottom:1px solid var(--border);
-}
-.header-inner{
-  display:flex; align-items:center; justify-content:space-between;
-  padding: .8rem 0;
-}
-.brand{
-  font-weight:800; color:var(--text); letter-spacing:.02em; font-size:1.05rem;
-}
-.nav{
-  display:flex; gap:1rem; align-items:center;
-}
-.nav a{
-  padding:.5rem .7rem; border-radius:10px; color:var(--text);
-}
-.nav a:hover{background:rgba(148,163,184,0.08); text-decoration:none}
+    <!-- Awards / Certificates -->
+    <section id="awards" class="card">
+      <h3 class="section-title">Awards & Certificates</h3>
+      <div class="certs">
+        <div class="cert">
+          <h4>Google UX Design</h4>
+          <p>Certificate • 2024</p>
+        </div>
+        <div class="cert">
+          <h4>Frontend Mentor — Gold</h4>
+          <p>Award • 2023</p>
+        </div>
+        <div class="cert">
+          <h4>React Pro Course</h4>
+          <p>Certificate • 2023</p>
+        </div>
+      </div>
+    </section>
 
-/* Mobile nav */
-.nav-toggle{
-  display:none;
-  background:none; border:0; padding:.3rem .2rem; cursor:pointer;
-}
-.nav-toggle-bar{
-  display:block; width:26px; height:2px; background:var(--text); margin:6px 0; border-radius:2px;
-}
-@media (max-width: 860px){
-  .nav-toggle{display:block}
-  .nav{position:fixed; inset:64px 0 auto 0; background:var(--bg); border-top:1px solid var(--border);
-       display:grid; gap:0; padding:.5rem 1rem; transform:translateY(-120%); transition:transform .3s ease;
-  }
-  .nav.open{transform:translateY(0)}
-  .nav a{padding:1rem; border-radius:12px}
-  body.no-scroll{overflow:hidden}
-}
+    <!-- Contact -->
+    <section id="contact" class="card">
+      <h3 class="section-title">Contact</h3>
+      <form class="contact-form" action="#" method="post">
+        <div class="row">
+          <label>
+            Name
+            <input type="text" name="name" placeholder="Your full name" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+        </div>
+        <label>
+          Subject
+          <input type="text" name="subject" placeholder="How can I help?" />
+        </label>
+        <label>
+          Message
+          <textarea name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
+        </label>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+      <div class="contact-cards">
+        <div class="contact-card"><span>📍</span> City, Country</div>
+        <div class="contact-card"><span>✉️</span> you@example.com</div>
+        <div class="contact-card"><span>📞</span> +00 000 0000</div>
+      </div>
+    </section>
 
-/* Hero */
-.hero{
-  padding: clamp(4rem, 10vw, 8rem) 0;
-}
-.hero-inner{
-  display:grid; gap:2rem; grid-template-columns: 1.2fr .8fr; align-items:center;
-}
-.hero-title{font-size: clamp(2.2rem, 6vw, 4rem)}
-.hero-sub{color:var(--muted); font-weight:600}
-.hero-ctas{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1rem}
-.hero-visual{height:260px; position:relative}
-.blob{
-  position:absolute; inset:0; border-radius:28px;
-  background: radial-gradient(120px 120px at 20% 30%, rgba(167,139,250,.28), transparent),
-              radial-gradient(180px 180px at 80% 60%, rgba(56,189,248,.28), transparent),
-              linear-gradient(120deg, rgba(168,85,247,.14), rgba(56,189,248,.1));
-  border:1px dashed var(--border);
-}
-@media (max-width: 980px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-visual{height:180px}
-}
+    <footer class="footer">
+      <p>Built with ♥ by You. Thanks for scrolling!</p>
+    </footer>
+  </main>
 
-/* Buttons */
-.btn{
-  appearance:none; border:1px solid transparent; background:var(--accent); color:#001018;
-  padding:.7rem 1rem; border-radius:12px; font-weight:800; letter-spacing:.02em; cursor:pointer;
-  box-shadow: var(--shadow);
-}
-.btn:hover{filter:brightness(1.05)}
-.btn-secondary{
-  background:transparent; border-color: var(--accent); color:var(--text);
-}
-.btn-ghost{
-  background:transparent; border-color: var(--border); color:var(--text);
-}
-
-/* Timeline */
-.timeline{list-style:none; padding:0; margin:0}
-.timeline li{padding:.6rem 0; border-bottom:1px dashed var(--border)}
-.timeline li:last-child{border-bottom:0}
-.timeline .when{color:var(--muted); font-size:.9rem; margin-bottom:.2rem}
-.timeline .what{font-size:.98rem}
-
-/* Skill tags */
-.tags{display:flex; flex-wrap:wrap; gap:.5rem; padding:0; margin:.6rem 0 0; list-style:none}
-.tags li{background:rgba(148,163,184,0.12); border:1px solid var(--border);
-         padding:.35rem .6rem; border-radius:999px; font-size:.85rem}
-
-/* Cards grid */
-.cards-grid .card{display:block}
-.project-card h3{margin-bottom:.3rem}
-
-/* Contact */
-.contact-grid .card h3{margin:.2rem 0 .4rem}
-.contact-form{
-  margin-top:1.2rem; display:grid; gap:.8rem; grid-template-columns: repeat(2, minmax(0,1fr));
-}
-.contact-form input, .contact-form textarea{
-  width:100%; background:#0a1224; border:1px solid var(--border); color:var(--text);
-  border-radius:12px; padding:.8rem; font:inherit;
-}
-.contact-form textarea{grid-column:1/-1}
-.contact-form .btn{grid-column:1/-1; width:max-content}
-
-/* Footer */
-.site-footer{
-  border-top:1px solid var(--border); padding:1rem 0; background:rgba(10,16,32,.7);
-}
-.footer-inner{display:flex; justify-content:center}
-.center{display:flex; justify-content:center; margin-top:1rem}
+  <script>
+    // Mobile sidebar toggle
+    const toggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    toggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+    // Current year
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
