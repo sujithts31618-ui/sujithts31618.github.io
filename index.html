@@ -381,17 +381,61 @@
   </section>
 
  
+<!-- Projects -->
 
+<section id="projects">
+  <h2>My Projects</h2>
 
-<!-- PROJECTS -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="card-container">
-      <article class="card"><h3>Project 1</h3><p>Brief description of the project.</p></article>
-      <article class="card"><h3>Project 2</h3><p>Brief description of the project.</p></article>
-      <article class="card"><h3>Project 3</h3><p>Brief description of the project.</p></article>
-    </div>
-  </section>
+  <div class="project">
+    <h3>Dashboard Analytics</h3>
+    <img src="images/dashboard.png" alt="Dashboard Project Screenshot" class="project-img">
+    
+    <details>
+      <summary>View Details</summary>
+      <p>
+        A full-stack analytics dashboard built with React and Node.js.  
+        Features include user authentication, data visualization with charts,  
+        and role-based access control.
+      </p>
+    </details>
+  </div>
+
+  <div class="project">
+    <h3>Weather App</h3>
+    <img src="images/weather-app.png" alt="Weather App Screenshot" class="project-img">
+    
+    <details>
+      <summary>View Details</summary>
+      <p>
+        A responsive weather application that fetches real-time data from  
+        OpenWeather API and displays temperature, humidity, and forecast.
+      </p>
+    </details>
+  </div>
+</section>
+
+<style>
+  #projects {
+    padding: 20px;
+  }
+  .project {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .project-img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    margin: 10px 0;
+  }
+  details summary {
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+</style>
 <!-- Personal Information -->
  <section id="personal-info">
   <h2>Personal Information</h2>
