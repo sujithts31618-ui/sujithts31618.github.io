@@ -1,215 +1,401 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Portfolio</title>
+  <title>Portfolio</title>
+  <meta name="description" content="Data Analyst Portfolio" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Mobile Topbar -->
-  <header class="topbar">
-    <button id="menuToggle" aria-label="Open menu" class="hamburger">☰</button>
-    <span class="brand">Portfolio</span>
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#home">Portfolio</a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <nav class="nav" id="site-nav" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certification</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- Sidebar / Profile -->
-  <aside class="sidebar" id="sidebar">
-    <div class="profile-card">
-      <img src="assets/profile.jpg" alt="Your profile photo" class="avatar" />
-      <h1>Your Name</h1>
-      <p class="role">UI/UX Designer • Frontend Dev</p>
-      <div class="cta">
-        <a href="#contact" class="btn">Hire Me</a>
-        <a href="assets/Your_Resume.pdf" class="btn btn-ghost" target="_blank" rel="noopener">Download CV</a>
+  <!-- Hero -->
+  <section id="home" class="section hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Hello!</p>
+        <h1 class="hero-title">I’m <span class="accent">Your Name</span></h1>
+        <p class="hero-sub">Data Analyst • SQL • Python • Power BI • Excel</p>
+        <div class="hero-ctas">
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-secondary" href="#" target="_blank" rel="noopener">Resume</a>
+          <a class="btn btn-ghost" href="#about">Get to know more</a>
+        </div>
       </div>
-      <ul class="quick-info">
-        <li><span>Experience:</span> 3+ years</li>
-        <li><span>Location:</span> City, Country</li>
-        <li><span>Email:</span> you@example.com</li>
-        <li><span>Phone:</span> +00 000 0000</li>
-      </ul>
-      <nav class="side-nav">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#awards" class="nav-link">Awards</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
-      <div class="socials">
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="#" aria-label="GitHub">gh</a>
-        <a href="#" aria-label="Dribbble">db</a>
-        <a href="#" aria-label="Twitter">tw</a>
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Optional hero image -->
+        <div class="blob"></div>
       </div>
     </div>
-    <footer class="mini-footer">© <span id="y"></span> Your Name</footer>
-  </aside>
+  </section>
 
-  <!-- Main Content -->
-  <main class="content">
-    <!-- Hero / Intro -->
-    <section class="hero">
-      <div class="badge">Available for work</div>
-      <h2>Hi, I’m <span class="accent">Your Name</span> — I craft neat interfaces and performant frontends.</h2>
-      <p>I build delightful, accessible products with clean code and thoughtful design.</p>
-      <a href="#projects" class="btn">See My Work</a>
-    </section>
+  <!-- About -->
+  <section id="about" class="section">
+    <div class="container">
+      <header class="section-header">
+        <p class="eyebrow">About Me</p>
+        <h2>About Me</h2>
+      </header>
 
-    <!-- About -->
-    <section id="about" class="card">
-      <h3 class="section-title">About Me</h3>
-      <p>
-        I’m a designer & frontend developer focused on building polished web experiences.
-        I love design systems, component-driven UIs, and shipping features users love.
-      </p>
-      <div class="about-grid">
-        <div>
-          <h4>What I Do</h4>
-          <ul class="checklist">
-            <li>Product & UI design</li>
-            <li>Responsive Frontend (React/Vanilla)</li>
-            <li>Design Systems & Accessibility</li>
+      <div class="grid two">
+        <div class="card">
+          <p>
+            I’m a data analyst focused on turning complex data into clear, actionable insights using
+            Python, SQL, Power BI, and Excel. I enjoy EDA, visualization, and building dashboards that
+            drive decisions.
+          </p>
+          <p>
+            Certified in Data Analytics and holding a Bachelor’s in Engineering. I practice on platforms
+            like LeetCode/DataLemur/HackerRank to stay sharp.
+          </p>
+          <p>
+            Outside work, you’ll find me exploring consumer trends, geeking out on tools, or on a cricket field.
+          </p>
+        </div>
+
+        <div class="stack">
+          <article class="card">
+            <h3>Experience</h3>
+            <ul class="timeline">
+              <li>
+                <div class="when">Oct 2024 – Present</div>
+                <div class="what"><strong>Data Analyst Intern</strong> — Cognifyz Technologies</div>
+              </li>
+              <li>
+                <div class="when">Sep 2024 – Oct 2024</div>
+                <div class="what"><strong>Data Analyst Intern</strong> — Mentorness</div>
+              </li>
+              <li>
+                <div class="when">Jan 2024 – Jul 2024</div>
+                <div class="what"><strong>Data Analytics Coursework</strong> — Digikull</div>
+              </li>
+              <li>
+                <div class="when">Aug 2022 – Apr 2023</div>
+                <div class="what"><strong>Site Engineer</strong> — T & T Infra Ltd., Pune</div>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Education</h3>
+            <ul class="timeline">
+              <li>
+                <div class="when">2018 – 2022</div>
+                <div class="what">
+                  <strong>Bachelor of Engineering</strong> — SITRC, Nashik
+                  <div class="muted">First Class Distinction</div>
+                </div>
+              </li>
+              <li>
+                <div class="when">2016 – 2018</div>
+                <div class="what">
+                  <strong>Higher Secondary School</strong> — K. K. Wagh College
+                  <div class="muted">First Class Distinction</div>
+                </div>
+              </li>
+            </ul>
+            <a class="btn btn-secondary" href="#" target="_blank" rel="noopener">Download CV</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="section alt">
+    <div class="container">
+      <header class="section-header">
+        <p class="eyebrow">Explore My</p>
+        <h2>Skills</h2>
+      </header>
+
+      <div class="grid four skill-grid">
+        <article class="card">
+          <h3>Data Analysis</h3>
+          <ul class="tags">
+            <li>EDA</li><li>Cleaning</li><li>Transformation</li><li>Mining</li>
+            <li>Stats</li><li>Outliers</li><li>Reporting</li>
           </ul>
-        </div>
-        <div>
-          <h4>Highlights</h4>
-          <ul class="highlights">
-            <li><span>25+</span> completed projects</li>
-            <li><span>4.9★</span> client rating</li>
-            <li><span>3</span> industry awards</li>
+        </article>
+
+        <article class="card">
+          <h3>Data Visualization</h3>
+          <ul class="tags">
+            <li>Dashboards</li><li>Interactive</li><li>Storytelling</li><li>MIS</li>
+            <li>Advanced Charts</li>
           </ul>
-        </div>
-      </div>
-    </section>
+        </article>
 
-    <!-- Services -->
-    <section id="services" class="card">
-      <h3 class="section-title">Services</h3>
-      <div class="grid-3">
-        <div class="service">
-          <h4>UI/UX Design</h4>
-          <p>Wireframes, user flows, prototypes, and visual systems that scale.</p>
-        </div>
-        <div class="service">
-          <h4>Frontend Dev</h4>
-          <p>Modern, fast, accessible websites with semantic HTML/CSS/JS.</p>
-        </div>
-        <div class="service">
-          <h4>Brand & Assets</h4>
-          <p>Logos, guidelines, and visuals that keep your product consistent.</p>
-        </div>
-      </div>
-    </section>
+        <article class="card">
+          <h3>Power BI</h3>
+          <ul class="tags">
+            <li>Modeling</li><li>DAX</li><li>Power Query</li><li>KPIs</li>
+          </ul>
+        </article>
 
-    <!-- Skills -->
-    <section id="skills" class="card">
-      <h3 class="section-title">Skills</h3>
-      <div class="skills">
-        <div class="skill"><span>HTML5</span><div class="bar"><i style="width:95%"></i></div></div>
-        <div class="skill"><span>CSS3 / Tailwind</span><div class="bar"><i style="width:92%"></i></div></div>
-        <div class="skill"><span>JavaScript</span><div class="bar"><i style="width:88%"></i></div></div>
-        <div class="skill"><span>React</span><div class="bar"><i style="width:85%"></i></div></div>
-        <div class="skill"><span>Figma</span><div class="bar"><i style="width:90%"></i></div></div>
-        <div class="skill"><span>Accessibility (a11y)</span><div class="bar"><i style="width:80%"></i></div></div>
-      </div>
-    </section>
+        <article class="card">
+          <h3>SQL</h3>
+          <ul class="tags">
+            <li>Optimization</li><li>Warehousing</li><li>Design</li><li>Procedures</li><li>MySQL</li>
+          </ul>
+        </article>
 
-    <!-- Projects -->
-    <section id="projects" class="card">
-      <h3 class="section-title">Projects</h3>
-      <div class="grid-3">
-        <a class="project" href="#" target="_blank" rel="noopener">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800&auto=format&fit=crop" alt="Project 1" />
-          <div class="project-body">
-            <h4>Analytics Dashboard</h4>
-            <p>Responsive, data-rich admin UI.</p>
-          </div>
-        </a>
-        <a class="project" href="#" target="_blank" rel="noopener">
-          <img src="https://images.unsplash.com/photo-1505685296765-3a2736de412f?q=80&w=800&auto=format&fit=crop" alt="Project 2" />
-          <div class="project-body">
-            <h4>E-commerce Store</h4>
-            <p>Headless storefront with clean UX.</p>
-          </div>
-        </a>
-        <a class="project" href="#" target="_blank" rel="noopener">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Project 3" />
-          <div class="project-body">
-            <h4>Portfolio Template</h4>
-            <p>Minimal, fast, accessible theme.</p>
-          </div>
-        </a>
-      </div>
-    </section>
+        <article class="card">
+          <h3>Excel & Sheets</h3>
+          <ul class="tags">
+            <li>Advanced formulas</li><li>Pivot</li><li>VLOOKUP</li><li>Cleaning</li>
+          </ul>
+        </article>
 
-    <!-- Awards / Certificates -->
-    <section id="awards" class="card">
-      <h3 class="section-title">Awards & Certificates</h3>
-      <div class="certs">
-        <div class="cert">
-          <h4>Google UX Design</h4>
-          <p>Certificate • 2024</p>
-        </div>
-        <div class="cert">
-          <h4>Frontend Mentor — Gold</h4>
-          <p>Award • 2023</p>
-        </div>
-        <div class="cert">
-          <h4>React Pro Course</h4>
-          <p>Certificate • 2023</p>
-        </div>
-      </div>
-    </section>
+        <article class="card">
+          <h3>Python Libraries</h3>
+          <ul class="tags">
+            <li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li>
+          </ul>
+        </article>
 
-    <!-- Contact -->
-    <section id="contact" class="card">
-      <h3 class="section-title">Contact</h3>
-      <form class="contact-form" action="#" method="post">
-        <div class="row">
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your full name" required />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" placeholder="you@example.com" required />
-          </label>
-        </div>
-        <label>
-          Subject
-          <input type="text" name="subject" placeholder="How can I help?" />
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
-        </label>
-        <button type="submit" class="btn">Send Message</button>
+        <article class="card">
+          <h3>Additional</h3>
+          <ul class="tags">
+            <li>Problem-solving</li><li>Detail-oriented</li><li>Time mgmt</li><li>Teamwork</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="section">
+    <div class="container">
+      <header class="section-header">
+        <p class="eyebrow">Browse My Recent</p>
+        <h2>Projects</h2>
+      </header>
+
+      <div class="grid three cards-grid" data-collapsible>
+        <!-- Repeat .project-card for all projects. Keep first 8 visible, rest hidden by [hidden] -->
+        <article class="card project-card">
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Restaurant Data Insights & Analytics</a></h3>
+          <p class="muted">Python (Pandas, Matplotlib, Seaborn, NumPy), SQL</p>
+        </article>
+
+        <article class="card project-card">
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Olympics Performance Analytics</a></h3>
+          <p class="muted">(Power BI, SQL, Python)</p>
+        </article>
+
+        <article class="card project-card">
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Bank Loan Analysis Project</a></h3>
+          <p class="muted">(Power BI, SQL)</p>
+        </article>
+
+        <article class="card project-card">
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Coffee Shop Sales Analysis</a></h3>
+          <p class="muted">(Power BI, SQL, MySQL, DAX)</p>
+        </article>
+
+        <article class="card project-card">
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Library Management System</a></h3>
+          <p class="muted">SQL (MySQL)</p>
+        </article>
+
+        <article class="card project-card">
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">IPL Scorecard / Points Table Dashboard</a></h3>
+          <p class="muted">Power BI, API</p>
+        </article>
+
+        <article class="card project-card" hidden>
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Data Entry Form Project</a></h3>
+          <p class="muted">Excel (Power Query, Macros)</p>
+        </article>
+
+        <article class="card project-card" hidden>
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Northwind Sales Analysis</a></h3>
+          <p class="muted">MySQL, Python</p>
+        </article>
+
+        <article class="card project-card" hidden>
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Smartphone Market Insights</a></h3>
+          <p class="muted">MySQL, Python</p>
+        </article>
+
+        <article class="card project-card" hidden>
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Retail Sales Dashboard</a></h3>
+          <p class="muted">MySQL, Power BI</p>
+        </article>
+
+        <article class="card project-card" hidden>
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">Sales Dashboard</a></h3>
+          <p class="muted">Excel, PowerPoint</p>
+        </article>
+
+        <article class="card project-card" hidden>
+          <h3><a href="https://github.com/" target="_blank" rel="noopener">YouTube Views Forecasting</a></h3>
+          <p class="muted">Excel</p>
+        </article>
+      </div>
+
+      <div class="center">
+        <button class="btn btn-ghost" data-toggle="show-more" data-target="#projects">Show More Projects</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certs" class="section alt">
+    <div class="container">
+      <header class="section-header">
+        <p class="eyebrow">My</p>
+        <h2>Awards & Certificates</h2>
+      </header>
+
+      <div class="grid three cards-grid" data-collapsible>
+        <article class="card">
+          <h3><a href="#" target="_blank" rel="noopener">Business Intelligence Analyst</a></h3>
+        </article>
+        <article class="card">
+          <h3><a href="#" target="_blank" rel="noopener">Python for Data Analytics</a></h3>
+        </article>
+        <article class="card">
+          <h3><a href="#" target="_blank" rel="noopener">Data Visualization Expert</a></h3>
+        </article>
+
+        <!-- Hidden by default; reveal with Show More -->
+        <article class="card" hidden><h3><a href="#" target="_blank" rel="noopener">IBM Data Analyst Professional</a></h3></article>
+        <article class="card" hidden><h3><a href="#" target="_blank" rel="noopener">SQL (Basic) — HackerRank</a></h3></article>
+        <article class="card" hidden><h3><a href="#" target="_blank" rel="noopener">Power BI Desktop</a></h3></article>
+        <article class="card" hidden><h3><a href="#" target="_blank" rel="noopener">MySQL Specialist</a></h3></article>
+        <article class="card" hidden><h3><a href="#" target="_blank" rel="noopener">Cloud Basics for Data Pros</a></h3></article>
+        <article class="card" hidden><h3><a href="#" target="_blank" rel="noopener">Tableau Desktop</a></h3></article>
+      </div>
+
+      <div class="center">
+        <button class="btn btn-ghost" data-toggle="show-more" data-target="#certs">Show More Certifications</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <header class="section-header">
+        <p class="eyebrow">Get in Touch</p>
+        <h2>Contact Me</h2>
+      </header>
+
+      <div class="grid three contact-grid">
+        <article class="card">
+          <h3>Address</h3>
+          <p>Nashik, Maharashtra</p>
+          <p><a href="https://maps.app.goo.gl/" target="_blank" rel="noopener">Open in Maps</a></p>
+        </article>
+
+        <article class="card">
+          <h3>Phone</h3>
+          <p><a href="tel:+91XXXXXXXXXX">+91 XXXXXXXXXX</a></p>
+          <h3>Email</h3>
+          <p><a href="mailto:you@example.com">you@example.com</a></p>
+        </article>
+
+        <article class="card">
+          <h3>WhatsApp</h3>
+          <p><a href="https://wa.me/910000000000" target="_blank" rel="noopener">Chat Now</a></p>
+          <h3>Social</h3>
+          <p class="socials">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </article>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! This is a static demo.');">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" rows="4" placeholder="Your message"></textarea>
+        <button class="btn" type="submit">Send Message</button>
       </form>
-      <div class="contact-cards">
-        <div class="contact-card"><span>📍</span> City, Country</div>
-        <div class="contact-card"><span>✉️</span> you@example.com</div>
-        <div class="contact-card"><span>📞</span> +00 000 0000</div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="footer">
-      <p>Built with ♥ by You. Thanks for scrolling!</p>
-    </footer>
-  </main>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Developed by <a href="#" target="_blank" rel="noopener">Your Name</a> · © <span id="year"></span> All rights reserved.</p>
+    </div>
+  </footer>
 
   <script>
-    // Mobile sidebar toggle
-    const toggle = document.getElementById('menuToggle');
-    const sidebar = document.getElementById('sidebar');
-    toggle.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const nav = document.getElementById('site-nav');
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('open');
+      document.body.classList.toggle('no-scroll', !expanded);
     });
-    // Current year
-    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id.length > 1 && document.querySelector(id)) {
+          e.preventDefault();
+          document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // close mobile nav if open
+          nav.classList.remove('open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('no-scroll');
+        }
+      });
+    });
+
+    // Show more (projects/certs)
+    function setupShowMore(sectionId) {
+      const section = document.querySelector(sectionId);
+      if (!section) return;
+      const grid = section.querySelector('[data-collapsible]');
+      const hiddenCards = () => Array.from(grid.querySelectorAll('[hidden]'));
+      const btn = section.querySelector('[data-toggle="show-more"]');
+
+      btn?.addEventListener('click', () => {
+        const currentlyHidden = hiddenCards();
+        const revealCount = 6; // reveal in batches
+        currentlyHidden.slice(0, revealCount).forEach(el => el.hidden = false);
+        if (hiddenCards().length === 0) {
+          btn.disabled = true;
+          btn.textContent = 'All caught up';
+        }
+      });
+    }
+
+    setupShowMore('#projects');
+    setupShowMore('#certs');
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
