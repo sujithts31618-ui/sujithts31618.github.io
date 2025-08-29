@@ -1,193 +1,465 @@
-:root {
-  --bg: #0a0a0a;
-  --bg-alt: #111111;
-  --card: #1a1a1a;
-  --muted: #b0aead;
-  --text: #f5f5f5;
-  --accent: #ff8c00;
-  --accent-2: #ffa500;
-  --border: rgba(255, 140, 0, 0.15);
-  --shadow: 0 10px 30px rgba(255, 140, 0, 0.1);
-  --radius: 14px;
-  --container: 1120px;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sujith TS • Portfolio</title>
 
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
-  color:var(--text);
-  background: radial-gradient(1000px 600px at 10% -10%, rgba(56,189,248,.12), transparent) no-repeat,
-             linear-gradient(180deg, #0b1220 0%, #0b1220 60%, #0e1528 100%);
-}
-img{max-width:100%;display:block}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-p{line-height:1.7}
-h1,h2,h3{line-height:1.2;margin:0 0 .6rem}
-h1{font-size:clamp(2rem, 3.4vw, 3rem)}
-h2{font-size:clamp(1.6rem, 2.4vw, 2.2rem)}
-h3{font-size:1.1rem}
-.muted{color:var(--muted)}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
 
-.container{
-  width:min(100% - 2rem, var(--container));
-  margin-inline:auto;
-}
+  <style>
+    /* -------------------- GLOBAL -------------------- */
+    :root {
+      --bg: #0d1117;
+      --bg-alt: #111418;
+      --card: #1a1f26;
+      --text: #f5f5f5;
+      --muted: #9ca3af;
+      --accent: #ff6b35; 
+      --accent-2: #faae2b;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 16px;
+      --nav-h: 68px;
+    }
 
-.section{
-  padding: clamp(3rem, 6vw, 5rem) 0;
-}
-.section.alt{
-  background: linear-gradient(180deg, var(--bg-alt), #0e1528);
-  border-top: 1px solid var(--border);
+    * {margin:0;padding:0;box-sizing:border-box}
+    html {scroll-behavior:smooth}
+    body {
+      font-family:"Montserrat",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    img {display:block;max-width:100%;height:auto}
+
+    a {color:var(--accent);text-decoration:none}
+    h1,h2,h3 {font-weight:600}
+    section {padding:80px 10%;min-height:40vh;scroll-margin-top:calc(var(--nav-h) + 24px)}
+
+    /* -------------------- NAVBAR -------------------- */
+nav {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  height: var(--nav-h);
+  background: rgba(0, 0, 0, .55);
+  backdrop-filter: saturate(140%) blur(16px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10%;   /* keep logo + menu aligned */
+  z-index: 1000;
   border-bottom: 1px solid var(--border);
 }
 
-.section-header{
-  text-align:center;
-  margin-bottom:2rem;
-}
-.eyebrow{
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-weight:700;
-  color:var(--accent);
-  font-size:.8rem;
-  margin:0 0 .5rem;
-}
-.accent{color:var(--accent)}
-
-.grid{
-  display:grid;
-  gap:1.2rem;
-}
-.grid.two{grid-template-columns: repeat(2, minmax(0,1fr))}
-.grid.three{grid-template-columns: repeat(3, minmax(0,1fr))}
-.grid.four{grid-template-columns: repeat(4, minmax(0,1fr))}
-@media (max-width: 980px){
-  .grid.four{grid-template-columns: repeat(2, minmax(0,1fr))}
-  .grid.three{grid-template-columns: repeat(2, minmax(0,1fr))}
-  .grid.two{grid-template-columns: 1fr}
+/* Logo text */
+nav .logo {
+  font-family: "Playfair Display", serif; /* professional serif */
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: var(--accent);
+  letter-spacing: 1px;
+  white-space: nowrap;  /* prevent breaking into 2 lines */
 }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:1.2rem;
-  box-shadow: var(--shadow);
+/* Navigation links */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
 }
 
-/* Header */
-.site-header{
-  position:sticky; top:0; z-index:50;
-  backdrop-filter: blur(12px);
-  background:linear-gradient(180deg, rgba(11,18,32,.8), rgba(11,18,32,.4));
-  border-bottom:1px solid var(--border);
-}
-.header-inner{
-  display:flex; align-items:center; justify-content:space-between;
-  padding: .8rem 0;
-}
-.brand{
-  font-weight:800; color:var(--text); letter-spacing:.02em; font-size:1.05rem;
-}
-.nav{
-  display:flex; gap:1rem; align-items:center;
-}
-.nav a{
-  padding:.5rem .7rem; border-radius:10px; color:var(--text);
-}
-.nav a:hover{background:rgba(148,163,184,0.08); text-decoration:none}
-
-/* Mobile nav */
-.nav-toggle{
-  display:none;
-  background:none; border:0; padding:.3rem .2rem; cursor:pointer;
-}
-.nav-toggle-bar{
-  display:block; width:26px; height:2px; background:var(--text); margin:6px 0; border-radius:2px;
-}
-@media (max-width: 860px){
-  .nav-toggle{display:block}
-  .nav{position:fixed; inset:64px 0 auto 0; background:var(--bg); border-top:1px solid var(--border);
-       display:grid; gap:0; padding:.5rem 1rem; transform:translateY(-120%); transition:transform .3s ease;
-  }
-  .nav.open{transform:translateY(0)}
-  .nav a{padding:1rem; border-radius:12px}
-  body.no-scroll{overflow:hidden}
+nav ul li a {
+  font-family: "Montserrat", sans-serif; /* clean, modern font */
+  font-weight: 500;
+  font-size: 0.79rem;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 100px;
+  transition: background 0.25s ease, color 0.25s ease;
 }
 
-/* Hero */
-.hero{
-  padding: clamp(4rem, 10vw, 8rem) 0;
+nav ul li a:hover,
+nav ul li a:focus-visible {
+  background: var(--accent);font-size: 0.9rem;
+  color: #000;
 }
-.hero-inner{
-  display:grid; gap:2rem; grid-template-columns: 1.2fr .8fr; align-items:center;
-}
-.hero-title{font-size: clamp(2.2rem, 6vw, 4rem)}
-.hero-sub{color:var(--muted); font-weight:600}
-.hero-ctas{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1rem}
-.hero-visual{height:260px; position:relative}
-.blob{
-  position:absolute; inset:0; border-radius:28px;
-  background: radial-gradient(120px 120px at 20% 30%, rgba(167,139,250,.28), transparent),
-              radial-gradient(180px 180px at 80% 60%, rgba(56,189,248,.28), transparent),
-              linear-gradient(120deg, rgba(168,85,247,.14), rgba(56,189,248,.1));
-  border:1px dashed var(--border);
-}
-@media (max-width: 980px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-visual{height:180px}
+      
+      /* Logo text in 2 lines */
+nav .logo {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Buttons */
-.btn{
-  appearance:none; border:1px solid transparent; background:var(--accent); color:#001018;
-  padding:.7rem 1rem; border-radius:12px; font-weight:800; letter-spacing:.02em; cursor:pointer;
-  box-shadow: var(--shadow);
-}
-.btn:hover{filter:brightness(1.05)}
-.btn-secondary{
-  background:transparent; border-color: var(--accent); color:var(--text);
-}
-.btn-ghost{
-  background:transparent; border-color: var(--border); color:var(--text);
+nav .logo span {
+  display: block;
 }
 
-/* Timeline */
-.timeline{list-style:none; padding:0; margin:0}
-.timeline li{padding:.6rem 0; border-bottom:1px dashed var(--border)}
-.timeline li:last-child{border-bottom:0}
-.timeline .when{color:var(--muted); font-size:.9rem; margin-bottom:.2rem}
-.timeline .what{font-size:.98rem}
-
-/* Skill tags */
-.tags{display:flex; flex-wrap:wrap; gap:.5rem; padding:0; margin:.6rem 0 0; list-style:none}
-.tags li{background:rgba(148,163,184,0.12); border:1px solid var(--border);
-         padding:.35rem .6rem; border-radius:999px; font-size:.85rem}
-
-/* Cards grid */
-.cards-grid .card{display:block}
-.project-card h3{margin-bottom:.3rem}
-
-/* Contact */
-.contact-grid .card h3{margin:.2rem 0 .4rem}
-.contact-form{
-  margin-top:1.2rem; display:grid; gap:.8rem; grid-template-columns: repeat(2, minmax(0,1fr));
+      
+      /* Education & Experience Titles */
+.education-card h3,
+.experience-card h3 {
+  color: #ecd67e;
 }
-.contact-form input, .contact-form textarea{
-  width:100%; background:#0a1224; border:1px solid var(--border); color:var(--text);
-  border-radius:12px; padding:.8rem; font:inherit;
-}
-.contact-form textarea{grid-column:1/-1}
-.contact-form .btn{grid-column:1/-1; width:max-content}
 
-/* Footer */
-.site-footer{
-  border-top:1px solid var(--border); padding:1rem 0; background:rgba(10,16,32,.7);
+
+    /* -------------------- HERO -------------------- */
+    .hero {
+      display:flex;align-items:center;justify-content:space-between;gap:40px;
+      padding-top:calc(var(--nav-h) + 32px);
+      animation:fadeIn .8s ease;
+    }
+    .hero-text {flex:1}
+    .hero-text h1 {
+      font-size:2.8rem;margin-bottom:10px;font-family:"Playfair Display",serif
+    }
+    .tagline {
+      color:#fff1b8;font-family:"Great Vibes",cursive;
+      font-size:1.6rem;letter-spacing:1.5px
+    }
+    .hero-cta {margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn {
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 16px;border-radius:12px;border:1px solid var(--border);
+      background:linear-gradient(180deg,#1f2430,#151922);
+      color:#fff;font-weight:600;
+      transition:transform .15s ease, box-shadow .15s ease, background .2s ease
+    }
+    .btn:hover {transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.35)}
+    .btn-accent {
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      color:#000;border:none
+    }
+    .btn-accent:hover {box-shadow:0 10px 26px rgba(255,140,0,.35)}
+    .hero-img {flex:1;display:flex;justify-content:center}
+    .hero-img img {
+      width:250px;height:250px;object-fit:cover;border-radius:50%;
+      border:5px solid var(--accent);box-shadow:0 12px 28px rgba(0,0,0,.45);
+      animation:float 3s ease-in-out infinite
+    }
+
+    /* -------------------- CARDS/GRIDS -------------------- */
+    .card-container {
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px
+    }
+    .card {
+      background:var(--card);padding:20px;border-radius:var(--radius);
+      border:1px solid var(--border);
+      transition:transform .25s, box-shadow .25s
+    }
+    .card:hover {transform:translateY(-8px);box-shadow:0 14px 28px rgba(0,0,0,.35)}
+
+    /* -------------------- SECTIONS HEADING -------------------- */
+   /* Section Headings */
+section h2 {
+  text-align: center;
+  margin-bottom: 22px;
+  font-size: 1.8rem;              /* reduced size */
+  font-family: "Great Vibes", cursive; /* stylish cursive font */
+  color: var(--accent);           /* orange */
+  letter-spacing: 1px;
 }
-.footer-inner{display:flex; justify-content:center}
-.center{display:flex; justify-content:center; margin-top:1rem}
+/* About Section */
+#about {
+  text-align: center; 
+  max-width: 1790px;      /* keeps text from being too wide */
+  margin: 0 auto;        /* centers it */
+  font-size: 1.05rem;    /* slightly larger text */
+  line-height: 1.8;      /* better readability */
+  color: var(--text);    /* keep consistent text color */
+}
+
+#about p {
+  margin-bottom: 14px;   /* spacing between paragraphs */
+}
+/* Personal Info Section */
+#personal-info {
+  margin: 40px 0;
+  text-align: center;
+}
+
+#personal-info h2 {
+  font-family: "Great Vibes", cursive;
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+/* Dropdown styling */
+#personal-info details {
+  display: inline-block;
+  background: var(--card);
+  padding: 15px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#personal-info summary {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--text);
+  cursor: pointer;
+  outline: none;
+}
+
+#personal-info ul {
+  list-style: none;
+  padding: 10px 0 0;
+  margin: 0;
+  text-align: left;
+}
+
+#personal-info li {
+  margin: 6px 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Highlight labels */
+#personal-info .label {
+  color: #ecd67e;
+  font-weight: 600;
+}
+
+
+    /* -------------------- EDUCATION -------------------- */
+    .education-container {display:flex;flex-direction:column;gap:16px;max-width:800px;margin:0 auto}
+    .education-card {
+      background:linear-gradient(180deg,#232a35,#1a1f27);
+      border:1px solid var(--border);
+      padding:20px;border-radius:18px;transition:transform .25s, box-shadow .25s
+    }
+    .education-card:hover {transform:translateY(-5px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+
+    /* -------------------- EXPERIENCE -------------------- */
+    .experience-container {display:flex;flex-direction:column;gap:16px;max-width:900px;margin:0 auto}
+    .experience-card {
+      background:linear-gradient(180deg,#232a35,#1a1f27);
+      padding:20px;border-radius:12px;border:1px solid var(--border);
+      box-shadow:0 4px 12px rgba(0,0,0,.25);
+      transition:transform .25s, box-shadow .25s
+    }
+    .experience-card:hover {transform:translateY(-5px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+
+    /* -------------------- SKILLS -------------------- */
+    .skills-icons {
+      display:flex;flex-wrap:wrap;justify-content:center;gap:28px;margin-top:14px
+    }
+    .skill {display:flex;flex-direction:column;align-items:center;font-size:.95rem}
+    .skill img {width:48px;height:48px;margin-bottom:8px;transition:transform .25s ease}
+    .skill img:hover {transform:scale(1.15)}
+    .skill:hover {transform:scale(1.1);transition:.3s}
+
+    /* -------------------- CONTACT -------------------- */
+    #contact {
+      text-align:center;font-family:"Great Vibes",cursive;
+      padding:60px 00%;background:var(--bg);
+       solid var(--accent);
+    }
+    #contact h2 {color:var(--accent);margin-bottom:14px}
+    .contact-icons {display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:10px}
+    .contact-icons img {width:48px;height:48px;transition:transform .25s ease, filter .25s ease}
+    .contact-icons img:hover {transform:scale(1.2);filter:brightness(1.2)}
+    .contact-number {margin-top:10px;opacity:.9}
+      
+      
+
+    /* -------------------- FOOTER -------------------- */
+    footer {
+      text-align:center;padding:16px 10%;
+      background:linear-gradient(125deg,var(--accent),var(--accent-2));
+      color:#111;box-shadow:0 -6px 18px rgba(0,0,0,.35)
+    }
+    footer p {margin:2px 0;font-size:.9rem;letter-spacing:.4px}
+
+    /* -------------------- ANIMATIONS -------------------- */
+    @keyframes fadeIn {from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes float {0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    /* -------------------- RESPONSIVE -------------------- */
+    @media (max-width: 900px){
+      .hero {flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+ /* -------------------- NAV -------------------- */
+ <nav aria-label="Primary">
+  <div class="logo">
+    <span>My</span>
+    <span>Portfolio</span>
+  </div>
+  <ul>
+<li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certification">Certification</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#projects">Projects</a></li>
+  </ul>
+</nav>
+
+    
+    
+
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Hello, I'm <span style="color:var(--accent)">Sujith TS</span></h1>
+      <p class="tagline">Microsoft Certified Power BI Developer from India</p>
+      <div class="hero-cta">
+        <a class="btn btn-accent" href="Sujith_TS_CV.pdf" download>⬇️ Download CV</a>
+        <a class="btn" href="#contact">📬 Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://via.placeholder.com/250" alt="Portrait of Sujith TS"/>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I am originally from Coorg district, Karnataka, and currently based in Whitefield, Bangalore.  
+    I’m passionate about designing creative and interactive dashboards that bring data to life.</p>
+    <p>I enjoy blending raw data into meaningful insights that drive smarter decisions.</p>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education-container">
+      <article class="education-card">
+        <h3>Bachelor of Engineering</h3>
+        <p><strong>Visvesvaraya Technological University (VTU)</strong></p>
+        <p>Government Engineering College Kodagu, Karnataka</p>
+        <p>CGPA: 7.5</p>
+      </article>
+      <article class="education-card">
+        <h3>Pre-University Course (PUC)</h3>
+        <p>St. Anne's PU College, Virajpet, Kodagu, Karnataka</p>
+        <p>Science (PCMB)</p>
+      </article>
+      <article class="education-card">
+        <h3>SSLC</h3>
+        <p>Lourde's Hill High School, Pollibetta, Kodagu, Karnataka</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="experience-container">
+      <article class="experience-card">
+        <h3>Tata Consultancy Services (TCS)</h3>
+        <p><strong>Designation:</strong> System Engineer</p>
+        <p><strong>Duration:</strong> Dec 2021 – Present</p>
+        <p><strong>Location:</strong> Whitefield, Bangalore</p>
+      </article>
+      <article class="experience-card">
+        <h3>Wistron Infocomm Manufacturing India Pvt. Ltd.</h3>
+        <p><strong>Designation:</strong> Trainee Test Engineer</p>
+        <p><strong>Duration:</strong> Nov 2020 – Oct 2021</p>
+        <p><strong>Location:</strong> Peenya, Bangalore</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-icons">
+      <div class="skill"><img src="https://img.icons8.com/color/48/power-bi.png" alt="Power BI"><p>Power BI</p></div>
+      <div class="skill"><img src="https://img.icons8.com/color/48/microsoft-excel-2019--v1.png" alt="Excel"><p>Excel</p></div>
+      <div class="skill"><img src="https://latestlogo.com/wp-content/uploads/2024/02/microsoft-power-automate.png" alt="Power Automate"><p>Power Automate</p></div>
+      <div class="skill"><img src="https://img.icons8.com/fluency/48/report-card.png" alt="Paginated Reports"><p>Paginated Reports</p></div>
+      <div class="skill"><img src="https://img.icons8.com/ios-filled/50/FF0000/oracle-logo.png" alt="Oracle SQL"><p>Oracle SQL</p></div>
+      <div class="skill"><img src="https://img.icons8.com/ios-filled/50/00618a/mysql-logo.png" alt="MySQL"><p>MySQL</p></div>
+      <div class="skill"><img src="https://img.icons8.com/color/48/snowflake.png" alt="Snowflake"><p>Snowflake</p></div>
+      <div class="skill"><img src="https://img.icons8.com/fluency/48/microsoft-copilot.png" alt="Microsoft Copilot"><p>MS Copilot</p></div>
+      <div class="skill"><img src="https://img.icons8.com/fluency/48/chatgpt.png" alt="ChatGPT"><p>ChatGPT</p></div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certification">
+    <h2>Certifications</h2>
+    <div class="card-container">
+      <article class="card"><img src="certificate1.jpg" alt="Certificate 1"><p><strong>Certificate Title 1</strong></p></article>
+      <article class="card"><img src="certificate2.jpg" alt="Certificate 2"><p><strong>Certificate Title 2</strong></p></article>
+      <article class="card"><img src="certificate3.jpg" alt="Certificate 3"><p><strong>Certificate Title 3</strong></p></article>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <h2>Awards</h2>
+    <div class="card-container">
+      <article class="card"><img src="award1.jpg" alt="Award 1"><p><strong>Award Title 1</strong></p></article>
+      <article class="card"><img src="award2.jpg" alt="Award 2"><p><strong>Award Title 2</strong></p></article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="card-container">
+      <article class="card"><h3>Project 1</h3><p>Brief description of the project.</p></article>
+      <article class="card"><h3>Project 2</h3><p>Brief description of the project.</p></article>
+      <article class="card"><h3>Project 3</h3><p>Brief description of the project.</p></article>
+    </div>
+  </section>
+<!-- Personal Information -->
+ <section id="personal-info">
+  <h2>Personal Information</h2>
+  <details>
+    <summary>Click to view details</summary>
+    <ul>
+      <li><span class="label">Date of Birth:</span> 12th Feb 1998</li>
+      <li><span class="label">Citizenship:</span> Indian</li>
+      <li><span class="label">Passport:</span> Available</li>
+      <li><span class="label">UAN Number:</span> Available</li>
+      <li><span class="label">Languages Known:</span> English, Kannada, Malayalam,  Hindi</li>
+    </ul>
+  </details>
+</section>
+<!-- Connect With Me -->
+
+ <!-- CONTACT -->
+<section id="contact">
+  <h2>Connect With Me</h2>
+  <p style="margin-bottom:12px">
+    <a class="btn btn-accent" href="Sujith_TS_CV.pdf" download>⬇️ Download CV</a>
+  </p>
+  <div class="contact-icons">
+    <a href="https://www.linkedin.com/in/yourprofile" target="_blank"><img src="https://img.icons8.com/color/48/linkedin.png" alt="LinkedIn"></a>
+    <a href="mailto:youremail@gmail.com"><img src="https://img.icons8.com/color/48/gmail.png" alt="Gmail"></a>
+    <a href="https://wa.me/919480562681" target="_blank"><img src="https://img.icons8.com/color/48/whatsapp.png" alt="WhatsApp"></a>
+    <a href="tel:+919480562681"><img src="https://img.icons8.com/color/48/phone.png" alt="Phone"></a>
+    <a href="https://instagram.com/yourprofile" target="_blank"><img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"></a>
+    <a href="https://github.com/yourprofile" target="_blank"><img src="https://img.icons8.com/material-outlined/48/ffffff/github.png" alt="GitHub"></a>
+  </div>
+  <p class="contact-number">📞 +91 9480562681</p>
+</section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Sujith TS. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>
